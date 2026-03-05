@@ -5,14 +5,6 @@ from nn_meter import load_latency_predictor
 import warnings
 import logging
 
-"""
-TODO: Change functionality to allow users to enter their own custom
-model filename for use instead of current hardcoded method.
-
-TODO: Create function that maps model file extension to variable for
-model_type parameter used by nnMeterPredictor.
-"""
-
 # Mute scikit-learn version warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -30,7 +22,13 @@ num_frameworks = len(hardware_inference_frameworks)
 
 
 def createModel():
-    # Define CNN model architecture
+    """"
+    Defines a CNN model architecture to be used by nn-Meter for latency 
+    prediction.
+
+    Returns: keras.src.engine.sequential.Sequential: the TensorFlow 
+    Keras CNN model.
+    """
     return models.Sequential([
         Input((32, 32, 3)),
         layers.Conv2D(32, (3, 3), activation='leaky_relu', padding='same'),
@@ -47,8 +45,23 @@ def createModel():
 
 
 def convertToONNX(model, filename):
-    # Convert TensorFlow Keras model to ONNX format
-    # (use a batch size of 1 to simulate single-image edge inference)
+    """
+    Converts a TensorFlow Keras convolutional neural network model into 
+    an ONNX format for nn-Meter latency prediction given a specified 
+    device inference framework.
+
+    Args: 
+        model (keras.src.engine.sequential.Sequential): The TensorFlow 
+         Keras model object to be used for latency prediction.
+        filename (str): The filename of the model being converted to
+         ONNX format.
+
+    Returns: The filename of the model being converted to ONNX format.
+    """
+    # Add .onnx file extension to the model filename
+    filename += ".onnx"
+
+    # Use a batch size of 1 to simulate single-image edge inference
     input_signature = [tf.TensorSpec([1, 32, 32, 3], tf.float32, name='x')]
     onnx_model, _ = tf2onnx.convert.from_keras(
         model, input_signature, opset=13)
@@ -57,14 +70,42 @@ def convertToONNX(model, filename):
     with open(filename, 'wb') as f:
         f.write(onnx_model.SerializeToString())
 
+    return filename
+
+
+def mapModelToFileExt():
+    """
+    TODO: Write mapModelToFileExt function that maps model file 
+    extension to variable for model_type parameter used by 
+    nnMeterPredictor object (predictor.predict).
+    """
+    pass
+
 
 def main():
+    """
+    Handles all user input and ouput. Allows the user to predict the
+    latency of a convolutional neural network model on 1 of 4 different
+    device inference frameworks.
+    """
+    print("\n", end='')  # print newline
     # Define CNN model architecture
     model = createModel()
 
+    """
+    TODO: Change functionality to allow users to enter their own custom
+    model filename for use instead of current hardcoded method.
+    """
+    model_name = 'custom_model'
+
+    """
+    TODO: Implement mapModelToFileExt function to get the model file 
+    extension. This will be used when setting the model_type parameter 
+    used by the nnMeterPredictor object (predictor.predict).
+    """
+
     # Convert model to onnx format
-    model_filename = 'custom_model.onnx'
-    convertToONNX(model, model_filename)
+    model_filename = convertToONNX(model, model_name)
 
     # Handle user input
     while (True):
@@ -80,6 +121,7 @@ def main():
                 "select a device inference framework to perform "
                 "latency prediction on: "
             )
+            print("\n", end='')  # print newline
 
             try:
                 # Check if user entered a non-numeric value or invalid option
@@ -106,8 +148,8 @@ def main():
         while (True):
             # Prompt user to predict latency for another framework
             user_input = input(
-                "Would you like to predict the latency of another hardware "
-                "and inference framework? Enter y/n: "
+                "Would you like to predict the latency of another device "
+                "inference framework? Enter y/n: "
             )
             try:
                 if (user_input.isnumeric()):
@@ -119,11 +161,12 @@ def main():
                 elif (user_input == "y"):
                     continue
                 elif (user_input == "n"):
-                    exit()  # exit the program if
+                    exit()  # exit the program
             except ValueError:
                 print("Error: Invalid option.\n")
                 continue
 
 
+# Declare entrypoint of program
 if __name__ == '__main__':
     main()

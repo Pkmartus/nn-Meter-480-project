@@ -1,0 +1,19 @@
+1. create builder workspace by running: nn-meter create --tflite-workspace <path/to/place/workspace/>
+2. download python3.10
+3. create virtual environment: python3.10 -m venv .z839_builder                        
+4. activate venv source .z839_builder/bin/activate
+5. install requirements:
+    pip install -r tool/docs/requirements/requirements_builder.txt
+    pip install -r tool/docs/requirements/requirements.txt
+    (not sure which of these is needed)
+6. install android studio (yes really wow)
+7. download benchmark model (2.1 version) from https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data
+8. find device: adb devices
+9. push to device:
+    adb [-s <device-serial>] push bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model /data/local/tmp
+
+    # add executable permission to benchmark_model
+    adb shell chmod +x /data/local/tmp/benchmark_model
+10. edit backend_config.yaml with serial and correct paths
+11. Test connection:
+    nn-meter connect --backend <backend-name> --workspace <path/to/workspace>

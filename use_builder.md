@@ -19,3 +19,7 @@
     nn-meter connect --backend <backend-name> --workspace <path/to/workspace>
 12.run script
     currently wrestling with all latency outputting as 0
+    gemini helped write helper functions to circomvent issues with device compatability
+        device had less cores than nn-meter expected.
+        tests were being generated as folders rather than .tflite files, a converter was needed
+        ppadb was having issues copying data so a generated helper function replaces some of those operations.

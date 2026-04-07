@@ -1,0 +1,891 @@
+{
+    "BF_add_add": {
+        "add_1": {
+            "latency": "0.8374199999999999 +- 0.109"
+        },
+        "add_2": {
+            "latency": "0.801517 +- 0.055"
+        },
+        "block": {
+            "latency": "1.97031 +- 0.251"
+        }
+    },
+    "BF_add_avgpool": {
+        "add": {
+            "latency": "0.793024 +- 0.051"
+        },
+        "avgpool": {
+            "latency": "1.1340899999999998 +- 0.044"
+        },
+        "block": {
+            "latency": "2.09904 +- 0.07"
+        }
+    },
+    "BF_add_concat": {
+        "add": {
+            "latency": "0.8200069999999999 +- 0.051"
+        },
+        "concat": {
+            "latency": "0.48879300000000003 +- 0.083"
+        },
+        "block": {
+            "latency": "1.49076 +- 0.239"
+        }
+    },
+    "BF_add_conv": {
+        "add": {
+            "latency": "0.804461 +- 0.057"
+        },
+        "conv": {
+            "latency": "108.551 +- 1.443"
+        },
+        "block": {
+            "latency": "109.74 +- 1.296"
+        }
+    },
+    "BF_add_convtrans": {
+        "add": {
+            "latency": "0.807917 +- 0.055"
+        },
+        "convtrans": {
+            "latency": "114.183 +- 0.938"
+        },
+        "block": {
+            "latency": "115.264 +- 1.049"
+        }
+    },
+    "BF_add_dwconv": {
+        "add": {
+            "latency": "0.823296 +- 0.165"
+        },
+        "dwconv": {
+            "latency": "3.47435 +- 0.069"
+        },
+        "block": {
+            "latency": "4.28035 +- 0.083"
+        }
+    },
+    "BF_add_fc": {
+        "add": {
+            "latency": "0.00662062 +- 0.001"
+        },
+        "fc": {
+            "latency": "0.197953 +- 0.018"
+        },
+        "block": {
+            "latency": "0.177284 +- 0.022"
+        }
+    },
+    "BF_add_relu": {
+        "add": {
+            "latency": "0.805079 +- 0.058"
+        },
+        "relu": {
+            "latency": "0.22712100000000002 +- 0.023"
+        },
+        "block": {
+            "latency": "0.838686 +- 0.189"
+        }
+    },
+    "BF_add_reshape": {
+        "add": {
+            "latency": "0.804064 +- 0.058"
+        },
+        "reshape": {
+            "latency": "0.122049 +- 0.023"
+        },
+        "block": {
+            "latency": "1.08028 +- 0.049"
+        }
+    },
+    "BF_avgpool_add": {
+        "avgpool": {
+            "latency": "1.13625 +- 0.053"
+        },
+        "add": {
+            "latency": "0.0932664 +- 0.011"
+        },
+        "block": {
+            "latency": "1.23671 +- 0.073"
+        }
+    },
+    "BF_avgpool_avgpool": {
+        "avgpool_1": {
+            "latency": "1.1381199999999998 +- 0.048"
+        },
+        "avgpool_2": {
+            "latency": "0.25561500000000004 +- 0.016"
+        },
+        "block": {
+            "latency": "1.38852 +- 0.052"
+        }
+    },
+    "BF_avgpool_concat": {
+        "avgpool": {
+            "latency": "1.12579 +- 0.044"
+        },
+        "concat": {
+            "latency": "0.10553900000000001 +- 0.059"
+        },
+        "block": {
+            "latency": "1.22631 +- 0.05"
+        }
+    },
+    "BF_avgpool_conv": {
+        "avgpool": {
+            "latency": "1.1278800000000002 +- 0.049"
+        },
+        "conv": {
+            "latency": "28.0426 +- 0.779"
+        },
+        "block": {
+            "latency": "29.4101 +- 1.239"
+        }
+    },
+    "BF_avgpool_convtrans": {
+        "avgpool": {
+            "latency": "1.13792 +- 0.089"
+        },
+        "convtrans": {
+            "latency": "29.4941 +- 0.505"
+        },
+        "block": {
+            "latency": "30.7085 +- 0.514"
+        }
+    },
+    "BF_avgpool_dwconv": {
+        "avgpool": {
+            "latency": "1.09793 +- 0.041"
+        },
+        "dwconv": {
+            "latency": "0.831631 +- 0.033"
+        },
+        "block": {
+            "latency": "1.96179 +- 0.059"
+        }
+    },
+    "BF_avgpool_relu": {
+        "avgpool": {
+            "latency": "1.12134 +- 0.046"
+        },
+        "relu": {
+            "latency": "0.0401347 +- 0.011"
+        },
+        "block": {
+            "latency": "1.13544 +- 0.068"
+        }
+    },
+    "BF_avgpool_reshape": {
+        "avgpool": {
+            "latency": "1.13703 +- 0.052"
+        },
+        "reshape": {
+            "latency": "0.0311438 +- 0.005"
+        },
+        "block": {
+            "latency": "1.1748299999999998 +- 0.053"
+        }
+    },
+    "BF_bn_relu": {
+        "bn": {
+            "latency": "0.767719 +- 0.112"
+        },
+        "relu": {
+            "latency": "0.22436 +- 0.024"
+        },
+        "block": {
+            "latency": "0.761648 +- 0.046"
+        }
+    },
+    "BF_concat_add": {
+        "concat": {
+            "latency": "0.46685000000000004 +- 0.032"
+        },
+        "add": {
+            "latency": "1.94074 +- 0.06"
+        },
+        "block": {
+            "latency": "2.45835 +- 0.067"
+        }
+    },
+    "BF_concat_avgpool": {
+        "concat": {
+            "latency": "0.479191 +- 0.034"
+        },
+        "avgpool": {
+            "latency": "2.04032 +- 0.14"
+        },
+        "block": {
+            "latency": "2.55229 +- 0.094"
+        }
+    },
+    "BF_concat_concat": {
+        "concat_1": {
+            "latency": "0.48025999999999996 +- 0.03"
+        },
+        "concat_2": {
+            "latency": "0.891652 +- 0.045"
+        },
+        "block": {
+            "latency": "1.42005 +- 0.162"
+        }
+    },
+    "BF_concat_conv": {
+        "concat": {
+            "latency": "0.479602 +- 0.089"
+        },
+        "conv": {
+            "latency": "227.437 +- 3.615"
+        },
+        "block": {
+            "latency": "228.068 +- 3.019"
+        }
+    },
+    "BF_concat_convtrans": {
+        "concat": {
+            "latency": "0.480191 +- 0.039"
+        },
+        "convtrans": {
+            "latency": "210.416 +- 1.585"
+        },
+        "block": {
+            "latency": "211.288 +- 1.958"
+        }
+    },
+    "BF_concat_dwconv": {
+        "concat": {
+            "latency": "0.471636 +- 0.038"
+        },
+        "dwconv": {
+            "latency": "7.28606 +- 0.152"
+        },
+        "block": {
+            "latency": "7.4465900000000005 +- 0.087"
+        }
+    },
+    "BF_concat_fc": {
+        "concat": {
+            "latency": "0.00967162 +- 0.001"
+        },
+        "fc": {
+            "latency": "0.43164800000000003 +- 0.062"
+        },
+        "block": {
+            "latency": "0.431643 +- 0.034"
+        }
+    },
+    "BF_concat_relu": {
+        "concat": {
+            "latency": "0.460619 +- 0.033"
+        },
+        "relu": {
+            "latency": "0.620308 +- 0.152"
+        },
+        "block": {
+            "latency": "1.071 +- 0.049"
+        }
+    },
+    "BF_concat_reshape": {
+        "concat": {
+            "latency": "0.471071 +- 0.066"
+        },
+        "reshape": {
+            "latency": "0.35328 +- 0.092"
+        },
+        "block": {
+            "latency": "0.876533 +- 0.129"
+        }
+    },
+    "BF_conv_add": {
+        "conv": {
+            "latency": "108.846 +- 2.336"
+        },
+        "add": {
+            "latency": "1.9838900000000002 +- 0.068"
+        },
+        "block": {
+            "latency": "110.067 +- 2.051"
+        }
+    },
+    "BF_conv_avgpool": {
+        "conv": {
+            "latency": "108.211 +- 1.395"
+        },
+        "avgpool": {
+            "latency": "2.0412 +- 0.074"
+        },
+        "block": {
+            "latency": "110.257 +- 1.101"
+        }
+    },
+    "BF_conv_bn": {
+        "conv": {
+            "latency": "108.081 +- 1.313"
+        },
+        "bn": {
+            "latency": "1.59376 +- 0.232"
+        },
+        "block": {
+            "latency": "108.352 +- 1.781"
+        }
+    },
+    "BF_conv_concat": {
+        "conv": {
+            "latency": "109.029 +- 1.645"
+        },
+        "concat": {
+            "latency": "0.8904059999999999 +- 0.054"
+        },
+        "block": {
+            "latency": "109.82 +- 1.719"
+        }
+    },
+    "BF_conv_conv": {
+        "conv_1": {
+            "latency": "108.874 +- 1.472"
+        },
+        "conv_2": {
+            "latency": "227.168 +- 2.812"
+        },
+        "block": {
+            "latency": "336.506 +- 4.648"
+        }
+    },
+    "BF_conv_convtrans": {
+        "conv": {
+            "latency": "109.133 +- 1.473"
+        },
+        "convtrans": {
+            "latency": "210.096 +- 1.621"
+        },
+        "block": {
+            "latency": "318.841 +- 2.414"
+        }
+    },
+    "BF_conv_dwconv": {
+        "conv": {
+            "latency": "108.334 +- 1.615"
+        },
+        "dwconv": {
+            "latency": "7.16509 +- 0.109"
+        },
+        "block": {
+            "latency": "115.568 +- 2.32"
+        }
+    },
+    "BF_conv_hswish": {
+        "conv": {
+            "latency": "108.458 +- 1.49"
+        },
+        "hswish": {
+            "latency": "0.741943 +- 0.094"
+        },
+        "block": {
+            "latency": "109.378 +- 1.157"
+        }
+    },
+    "BF_conv_relu": {
+        "conv": {
+            "latency": "108.02 +- 1.296"
+        },
+        "relu": {
+            "latency": "0.624205 +- 0.128"
+        },
+        "block": {
+            "latency": "108.033 +- 1.485"
+        }
+    },
+    "BF_conv_reshape": {
+        "conv": {
+            "latency": "108.017 +- 1.333"
+        },
+        "reshape": {
+            "latency": "0.361978 +- 0.03"
+        },
+        "block": {
+            "latency": "109.614 +- 1.628"
+        }
+    },
+    "BF_conv_se": {
+        "conv": {
+            "latency": "108.059 +- 1.357"
+        },
+        "se": {
+            "latency": "3.98174 +- 0.213"
+        },
+        "block": {
+            "latency": "113.044 +- 1.191"
+        }
+    },
+    "BF_convtrans_add": {
+        "convtrans": {
+            "latency": "114.334 +- 2.812"
+        },
+        "add": {
+            "latency": "1.98236 +- 0.195"
+        },
+        "block": {
+            "latency": "115.772 +- 1.182"
+        }
+    },
+    "BF_convtrans_avgpool": {
+        "convtrans": {
+            "latency": "114.101 +- 1.059"
+        },
+        "avgpool": {
+            "latency": "2.03316 +- 0.076"
+        },
+        "block": {
+            "latency": "116.264 +- 0.928"
+        }
+    },
+    "BF_convtrans_concat": {
+        "convtrans": {
+            "latency": "113.958 +- 0.798"
+        },
+        "concat": {
+            "latency": "0.907338 +- 0.066"
+        },
+        "block": {
+            "latency": "116.086 +- 1.479"
+        }
+    },
+    "BF_convtrans_conv": {
+        "convtrans": {
+            "latency": "114.176 +- 1.687"
+        },
+        "conv": {
+            "latency": "227.413 +- 2.915"
+        },
+        "block": {
+            "latency": "341.096 +- 2.809"
+        }
+    },
+    "BF_convtrans_convtrans": {
+        "convtrans_1": {
+            "latency": "114.02 +- 0.858"
+        },
+        "convtrans_2": {
+            "latency": "210.404 +- 2.39"
+        },
+        "block": {
+            "latency": "324.985 +- 1.532"
+        }
+    },
+    "BF_convtrans_dwconv": {
+        "convtrans": {
+            "latency": "114.521 +- 2.304"
+        },
+        "dwconv": {
+            "latency": "7.24746 +- 0.143"
+        },
+        "block": {
+            "latency": "120.294 +- 0.797"
+        }
+    },
+    "BF_convtrans_relu": {
+        "convtrans": {
+            "latency": "114.221 +- 1.029"
+        },
+        "relu": {
+            "latency": "0.573667 +- 0.091"
+        },
+        "block": {
+            "latency": "114.054 +- 0.958"
+        }
+    },
+    "BF_convtrans_reshape": {
+        "convtrans": {
+            "latency": "113.922 +- 0.955"
+        },
+        "reshape": {
+            "latency": "0.35867200000000005 +- 0.033"
+        },
+        "block": {
+            "latency": "115.091 +- 1.086"
+        }
+    },
+    "BF_dwconv_add": {
+        "dwconv": {
+            "latency": "3.54583 +- 0.261"
+        },
+        "add": {
+            "latency": "0.790817 +- 0.06"
+        },
+        "block": {
+            "latency": "4.19137 +- 0.097"
+        }
+    },
+    "BF_dwconv_avgpool": {
+        "dwconv": {
+            "latency": "3.4677 +- 0.128"
+        },
+        "avgpool": {
+            "latency": "1.12706 +- 0.071"
+        },
+        "block": {
+            "latency": "4.79517 +- 0.144"
+        }
+    },
+    "BF_dwconv_bn": {
+        "dwconv": {
+            "latency": "3.4983299999999997 +- 0.122"
+        },
+        "bn": {
+            "latency": "0.7667010000000001 +- 0.05"
+        },
+        "block": {
+            "latency": "3.51945 +- 0.098"
+        }
+    },
+    "BF_dwconv_concat": {
+        "dwconv": {
+            "latency": "3.49247 +- 0.09"
+        },
+        "concat": {
+            "latency": "0.472275 +- 0.032"
+        },
+        "block": {
+            "latency": "3.95043 +- 0.115"
+        }
+    },
+    "BF_dwconv_conv": {
+        "dwconv": {
+            "latency": "3.48334 +- 0.096"
+        },
+        "conv": {
+            "latency": "108.044 +- 1.266"
+        },
+        "block": {
+            "latency": "111.667 +- 2.574"
+        }
+    },
+    "BF_dwconv_convtrans": {
+        "dwconv": {
+            "latency": "3.5124 +- 0.113"
+        },
+        "convtrans": {
+            "latency": "113.703 +- 0.545"
+        },
+        "block": {
+            "latency": "117.892 +- 1.121"
+        }
+    },
+    "BF_dwconv_dwconv": {
+        "dwconv_1": {
+            "latency": "3.49671 +- 0.107"
+        },
+        "dwconv_2": {
+            "latency": "3.49929 +- 0.094"
+        },
+        "block": {
+            "latency": "6.866140000000001 +- 0.111"
+        }
+    },
+    "BF_dwconv_relu": {
+        "dwconv": {
+            "latency": "3.4778200000000004 +- 0.099"
+        },
+        "relu": {
+            "latency": "0.23453200000000002 +- 0.037"
+        },
+        "block": {
+            "latency": "3.5091900000000003 +- 0.099"
+        }
+    },
+    "BF_dwconv_reshape": {
+        "dwconv": {
+            "latency": "3.47504 +- 0.103"
+        },
+        "reshape": {
+            "latency": "0.12934700000000002 +- 0.056"
+        },
+        "block": {
+            "latency": "3.62231 +- 0.115"
+        }
+    },
+    "BF_fc_add": {
+        "fc": {
+            "latency": "0.197108 +- 0.018"
+        },
+        "add": {
+            "latency": "0.00483609 +- 0.0"
+        },
+        "block": {
+            "latency": "0.177208 +- 0.024"
+        }
+    },
+    "BF_fc_concat": {
+        "fc": {
+            "latency": "0.19842400000000002 +- 0.026"
+        },
+        "concat": {
+            "latency": "0.00816752 +- 0.002"
+        },
+        "block": {
+            "latency": "0.210552 +- 0.02"
+        }
+    },
+    "BF_fc_fc": {
+        "fc_1": {
+            "latency": "0.19583899999999999 +- 0.017"
+        },
+        "fc_2": {
+            "latency": "0.0642938 +- 0.006"
+        },
+        "block": {
+            "latency": "0.24199600000000002 +- 0.037"
+        }
+    },
+    "BF_fc_relu": {
+        "fc": {
+            "latency": "0.198799 +- 0.032"
+        },
+        "relu": {
+            "latency": "0.00297654 +- 0.001"
+        },
+        "block": {
+            "latency": "0.195563 +- 0.016"
+        }
+    },
+    "BF_fc_reshape": {
+        "fc": {
+            "latency": "0.206414 +- 0.019"
+        },
+        "reshape": {
+            "latency": "0.00261039 +- 0.001"
+        },
+        "block": {
+            "latency": "0.17494200000000001 +- 0.022"
+        }
+    },
+    "BF_relu_add": {
+        "relu": {
+            "latency": "0.214893 +- 0.025"
+        },
+        "add": {
+            "latency": "0.796347 +- 0.127"
+        },
+        "block": {
+            "latency": "1.0873199999999998 +- 0.058"
+        }
+    },
+    "BF_relu_avgpool": {
+        "relu": {
+            "latency": "0.23415899999999998 +- 0.06"
+        },
+        "avgpool": {
+            "latency": "1.1348699999999998 +- 0.05"
+        },
+        "block": {
+            "latency": "1.3460999999999999 +- 0.052"
+        }
+    },
+    "BF_relu_concat": {
+        "relu": {
+            "latency": "0.218804 +- 0.022"
+        },
+        "concat": {
+            "latency": "0.47502300000000003 +- 0.122"
+        },
+        "block": {
+            "latency": "0.767173 +- 0.116"
+        }
+    },
+    "BF_relu_conv": {
+        "relu": {
+            "latency": "0.21429900000000002 +- 0.023"
+        },
+        "conv": {
+            "latency": "107.804 +- 1.028"
+        },
+        "block": {
+            "latency": "108.646 +- 1.226"
+        }
+    },
+    "BF_relu_convtrans": {
+        "relu": {
+            "latency": "0.219999 +- 0.023"
+        },
+        "convtrans": {
+            "latency": "113.788 +- 0.723"
+        },
+        "block": {
+            "latency": "114.766 +- 1.219"
+        }
+    },
+    "BF_relu_dwconv": {
+        "relu": {
+            "latency": "0.217111 +- 0.069"
+        },
+        "dwconv": {
+            "latency": "3.47811 +- 0.104"
+        },
+        "block": {
+            "latency": "3.75181 +- 0.066"
+        }
+    },
+    "BF_relu_fc": {
+        "relu": {
+            "latency": "0.00362313 +- 0.001"
+        },
+        "fc": {
+            "latency": "0.19781800000000002 +- 0.017"
+        },
+        "block": {
+            "latency": "0.200741 +- 0.016"
+        }
+    },
+    "BF_relu_relu": {
+        "relu_1": {
+            "latency": "0.22313 +- 0.024"
+        },
+        "relu_2": {
+            "latency": "0.222833 +- 0.023"
+        },
+        "block": {
+            "latency": "0.21285300000000001 +- 0.023"
+        }
+    },
+    "BF_relu_reshape": {
+        "relu": {
+            "latency": "0.209471 +- 0.025"
+        },
+        "reshape": {
+            "latency": "0.120654 +- 0.017"
+        },
+        "block": {
+            "latency": "0.388786 +- 0.047"
+        }
+    },
+    "BF_reshape_add": {
+        "reshape": {
+            "latency": "0.12436799999999999 +- 0.05"
+        },
+        "add": {
+            "latency": "0.7985610000000001 +- 0.064"
+        },
+        "block": {
+            "latency": "1.01533 +- 0.07"
+        }
+    },
+    "BF_reshape_avgpool": {
+        "reshape": {
+            "latency": "0.13793799999999998 +- 0.058"
+        },
+        "avgpool": {
+            "latency": "1.50798 +- 0.049"
+        },
+        "block": {
+            "latency": "1.66999 +- 0.058"
+        }
+    },
+    "BF_reshape_concat": {
+        "reshape": {
+            "latency": "0.121312 +- 0.014"
+        },
+        "concat": {
+            "latency": "0.877479 +- 0.042"
+        },
+        "block": {
+            "latency": "1.07969 +- 0.187"
+        }
+    },
+    "BF_reshape_conv": {
+        "reshape": {
+            "latency": "0.123848 +- 0.015"
+        },
+        "conv": {
+            "latency": "105.611 +- 1.341"
+        },
+        "block": {
+            "latency": "106.271 +- 2.213"
+        }
+    },
+    "BF_reshape_convtrans": {
+        "reshape": {
+            "latency": "0.134966 +- 0.018"
+        },
+        "convtrans": {
+            "latency": "138.242 +- 0.788"
+        },
+        "block": {
+            "latency": "136.899 +- 0.888"
+        }
+    },
+    "BF_reshape_dwconv": {
+        "reshape": {
+            "latency": "0.11337699999999999 +- 0.022"
+        },
+        "dwconv": {
+            "latency": "3.9411799999999997 +- 0.065"
+        },
+        "block": {
+            "latency": "4.29169 +- 0.15"
+        }
+    },
+    "BF_reshape_fc": {
+        "reshape": {
+            "latency": "0.00304529 +- 0.0"
+        },
+        "fc": {
+            "latency": "0.41377600000000003 +- 0.06"
+        },
+        "block": {
+            "latency": "0.359491 +- 0.039"
+        }
+    },
+    "BF_reshape_relu": {
+        "reshape": {
+            "latency": "0.140943 +- 0.016"
+        },
+        "relu": {
+            "latency": "0.235146 +- 0.026"
+        },
+        "block": {
+            "latency": "0.38717599999999996 +- 0.032"
+        }
+    },
+    "BF_reshape_reshape": {
+        "reshape_1": {
+            "latency": "0.13235 +- 0.051"
+        },
+        "reshape_2": {
+            "latency": "0.13459700000000002 +- 0.048"
+        },
+        "block": {
+            "latency": "0.138084 +- 0.026"
+        }
+    },
+    "BF_se_relu": {
+        "se": {
+            "latency": "0.973296 +- 0.103"
+        },
+        "relu": {
+            "latency": "0.23277899999999999 +- 0.024"
+        },
+        "block": {
+            "latency": "0.975989 +- 0.13"
+        }
+    },
+    "MON": {
+        "block": {
+            "latency": "7.69212 +- 0.104"
+        },
+        "relu_relu": {
+            "latency": "0.22928800000000002 +- 0.04"
+        },
+        "relu_dwconv": {
+            "latency": "3.52841 +- 0.073"
+        },
+        "dwconv": {
+            "latency": "3.26822 +- 0.094"
+        },
+        "dwconv_relu_relu": {
+            "latency": "3.26652 +- 0.115"
+        },
+        "dwconv_relu": {
+            "latency": "3.2499000000000002 +- 0.099"
+        }
+    }
+}

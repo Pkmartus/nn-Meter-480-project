@@ -17,3 +17,5 @@
 10. edit backend_config.yaml with serial and correct paths
 11. Test connection:
     nn-meter connect --backend <backend-name> --workspace <path/to/workspace>
+12.run script
+    currently wrestling with all latency outputting as 0

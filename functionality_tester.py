@@ -4,6 +4,8 @@ import tensorflow as tf
 from nn_meter import load_latency_predictor
 import warnings
 import logging
+import sys
+import os
 
 # Mute scikit-learn version warnings
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -81,6 +83,9 @@ def mapModelToFileExt():
     """
     pass
 
+# function that lets us keep the CLI clean 
+def clear():
+    os.system('cls' if os.name== 'nt' else 'clear')
 
 def main():
     """
@@ -106,9 +111,13 @@ def main():
 
     # Convert model to onnx format
     model_filename = convertToONNX(model, model_name)
-
+    
     # Handle user input
     while (True):
+        print("***********************************************************")
+        
+        print("*******************")
+        clear()
         while (True):
             print(f"Using model: {model_filename}\n")
             print('Options:')
@@ -119,22 +128,51 @@ def main():
             user_input = input(
                 f"\nEnter a number (1-{num_frameworks}) to "
                 "select a device inference framework to perform "
-                "latency prediction on: "
+                "latency prediction on \n\n" \
+                "Or, if you are trying to create your own NN-meter inference framework, please enter \"quickstart\" \n\n" 
+                "Option: "
             )
             print("\n", end='')  # print newline
+              # exit case if we wanna leave early
+            if(user_input =='0' ):
+                sys.exit(0)
 
             try:
                 # Check if user entered a non-numeric value or invalid option
-                if (not user_input.isnumeric):
+                if ((not user_input.isnumeric) and user_input != "new" ):
                     raise ValueError
+                if(user_input == "new"):
+                    break
                 user_input = int(user_input)  # typecast input to integer
                 if (user_input < 1 or user_input > num_frameworks):
                     raise ValueError
                 else:
                     break  # valid input = exit the loop
             except:
+                clear()
                 print("Error: Invalid option.\n")
                 continue
+
+                # this can be placed within the main loop later just keeping it clean for now
+        if (user_input == "new"):
+            print("""
+.-------------------------------------------------------------------------------------------------------------------------------------.
+|   _   _ _   _                          _                          _      _             _             _                 _     _      |
+|  | \ | | \ | |          _ __ ___   ___| |_ ___ _ __    __ _ _   _(_) ___| | __     ___| |_ __ _ _ __| |_    __ _ _   _(_) __| | ___ |
+|  |  \| |  \| |  _____  | '_ ` _ \ / _ | __/ _ | '__|  / _` | | | | |/ __| |/ _____/ __| __/ _` | '__| __|  / _` | | | | |/ _` |/ _ \|
+|  | |\  | |\  | |_____| | | | | | |  __| ||  __| |    | (_| | |_| | | (__|   |_____\__ | || (_| | |  | |_  | (_| | |_| | | (_| |  __/|
+|  |_| \_|_| \_|         |_| |_| |_|\___|\__\___|_|     \__, |\__,_|_|\___|_|\_\    |___/\__\__,_|_|   \__|  \__, |\__,_|_|\__,_|\___||
+|                                                          |_|                                               |___/                    |
+'-------------------------------------------------------------------------------------------------------------------------------------'
+""")
+            print("\n\nSo you want to create your own inference type on the NN-meter project?" \
+            "Well we put together this quick start toolkit for you since we know first hand how channlending " \
+            "the Read.me file can be to work with.")
+            print("\n\n First thing we need to do is create a builder workspace")
+
+            
+
+
 
         # Predict the inference latency of the model on the device
         predictor = load_latency_predictor(

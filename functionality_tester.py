@@ -114,10 +114,6 @@ def main():
     
     # Handle user input
     while (True):
-        print("***********************************************************")
-        
-        print("*******************")
-        clear()
         while (True):
             print(f"Using model: {model_filename}\n")
             print('Options:')
@@ -155,7 +151,23 @@ def main():
 
                 # this can be placed within the main loop later just keeping it clean for now
         if (user_input == "new"):
-            print("""
+            Loop = True
+            while (Loop):
+             
+             print("Quick start menu")
+             print("1. Don't know where to start? Start here!")
+             print("2. Getting andoid studio ")
+             print("3. setting up your python venv")
+             print("4. Getting other NN-meter dependinces")
+             user_input = input(
+                f"\nEnter a number to select an option, or enter 0 to quit: ")
+             
+             if user_input == '0':
+                 print(user_input)
+                 Loop = False
+                 
+                
+             print("""
 .-------------------------------------------------------------------------------------------------------------------------------------.
 |   _   _ _   _                          _                          _      _             _             _                 _     _      |
 |  | \ | | \ | |          _ __ ___   ___| |_ ___ _ __    __ _ _   _(_) ___| | __     ___| |_ __ _ _ __| |_    __ _ _   _(_) __| | ___ |

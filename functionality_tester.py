@@ -125,7 +125,7 @@ def main():
                 f"\nEnter a number (1-{num_frameworks}) to "
                 "select a device inference framework to perform "
                 "latency prediction on \n\n" \
-                "Or, if you are trying to create your own NN-meter inference framework, please enter \"quickstart\" \n\n" 
+                "Or, if you are trying to create your own NN-meter inference framework, please enter \"new\" \n\n" 
                 "Option: "
             )
             print("\n", end='')  # print newline
@@ -154,20 +154,22 @@ def main():
             Loop = True
             while (Loop):
              
-             print("Quick start menu")
-             print("1. Don't know where to start? Start here!")
-             print("2. Getting andoid studio ")
-             print("3. setting up your python venv")
-             print("4. Getting other NN-meter dependinces")
-             user_input = input(
-                f"\nEnter a number to select an option, or enter 0 to quit: ")
-             
-             if user_input == '0':
-                 print(user_input)
-                 Loop = False
-                 
+                print("Quick start menu")
+                print("1. Don't know where to start? Start here!")
+                print("2. Getting andoid studio ")
+                print("3. setting up your python venv")
+                print("4. Getting other NN-meter dependinces")
+                user_input = input(
+                    f"\nEnter a number to select an option, or enter 0 to quit: ")
                 
-             print("""
+                if ((not user_input.isnumeric)):
+                    print("Thats not a valid option")
+                elif user_input == '0':
+                    print(user_input)
+                    Loop = False
+                elif user_input =='1': # Letting user know the general plan 
+                    clear()
+                    print("""
 .-------------------------------------------------------------------------------------------------------------------------------------.
 |   _   _ _   _                          _                          _      _             _             _                 _     _      |
 |  | \ | | \ | |          _ __ ___   ___| |_ ___ _ __    __ _ _   _(_) ___| | __     ___| |_ __ _ _ __| |_    __ _ _   _(_) __| | ___ |
@@ -177,10 +179,97 @@ def main():
 |                                                          |_|                                               |___/                    |
 '-------------------------------------------------------------------------------------------------------------------------------------'
 """)
-            print("\n\nSo you want to create your own inference type on the NN-meter project?" \
-            "Well we put together this quick start toolkit for you since we know first hand how channlending " \
-            "the Read.me file can be to work with.")
-            print("\n\n First thing we need to do is create a builder workspace")
+                    print("="*75)
+                    print("🛠️  NN-METER CUSTOM BUILDER: COMPREHENSIVE ROADMAP  🛠️")
+                    print("="*75 + "\n")
+
+                    # Step 1
+                    print("STEP 1: ENVIRONMENT & TOOLCHAIN PREPARATION")
+                    print("  - Objective: Get your development ecosystem together.")
+                    print("  - Needs: Android Studio/SDK, Python virtual environment (v3.8+), ")
+                    print("    and specific hardware drivers/compilers.")
+                    print("  - Duration: ~1 hour\n")
+
+                    # Step 2
+                    print("STEP 2: HARDWARE ARCHITECTURE SPECIFICATION")
+                    print("  - Objective: Formalize your device's capabilities.")
+                    print("  - Needs: JSON descriptor files defining compute units, ")
+                    print("    memory hierarchy, and clock speeds.")
+                    print("  - Duration: ~1 hour\n")
+
+                    # Step 3
+                    print("STEP 3: IR PARSING & OP MAPPING")
+                    print("  - Objective: Bridge your model to hardware instructions.")
+                    print("  - Needs: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
+                    print("    to your target’s specific operational primitives.")
+                    print("  - Duration: ~2-3 hours\n")
+
+                    # Step 4
+                    print("STEP 4: LATENCY PREDICTOR DEVELOPMENT")
+                    print("  - Objective: Train your estimation engine.")
+                    print("  - Needs: Performance data collection from your actual hardware ")
+                    print("    to regress latency for target operators.")
+                    print("  - Duration: ~2-4 hours\n")
+
+                    # Step 5
+                    print("STEP 5: INTEGRATION & VALIDATION")
+                    print("  - Objective: Stitch and verify the workflow.")
+                    print("  - Needs: Registering your builder in the NN-Meter framework and ")
+                    print("    running smoke tests against a standard model suite.")
+                    print("  - Duration: ~1-2 hours\n")
+
+                    print("-" * 75)
+                    print("⚡ TOTAL ESTIMATED EFFORT: 7 to 11 hours")
+                    print("-" * 75 + "\n")
+
+                    print("="*80)
+                    print(" NN-METER: CUSTOM BUILDER ARCHITECTURE & FILE FORMATS ")
+                    print("="*80 + "\n")
+
+                    print("--- DIRECTORY STRUCTURE ---")
+                    print("When you finalize your custom predictor, it should be organized as follows:")
+                    print("  /customized_predictor/")
+                    print("  ├── meta.yaml              # Configuration/metadata for registration")
+                    print("  ├── fusion_rules.json      # Mapping of supported operator fusions")
+                    print("  └── [kernel_name].pkl      # Latency predictor models (Pickle files) for each kernel\n")
+
+                    print("--- KEY FILE FORMATS EXPLAINED ---")
+                    print("1. meta.yaml")
+                    print("   - Type: YAML")
+                    print("   - Purpose: Acts as the manifest. It defines the 'name' for your predictor,")
+                    print("     the 'category' (e.g., cpu, gpu, npu), and links to the predictor folder.")
+                    print("\n2. fusion_rules.json")
+                    print("   - Type: JSON")
+                    print("   - Purpose: Contains the detected fusion rules that inform NN-Meter how to")
+                    print("     group operators into kernels for your specific hardware architecture.")
+                    print("\n3. [kernel_name].pkl")
+                    print("   - Type: Python Pickle")
+                    print("   - Purpose: Serialized machine learning models (typically trained regressors)")
+                    print("     that output predicted latency given specific kernel input parameters.")
+                    print("\n" + "="*80)
+                    print("Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in")
+                    print("your fusion rules to avoid runtime mapping errors")
+
+                    input(f"Press any button to continue")
+                    clear()
+                    
+
+
+                elif user_input =='2': # walking user through setting up android studio
+                    print("andoid studio")
+                elif user_input == '3':
+                        print("Getting Python and other tools up to date ") # getting user to install right version of python. setting up 
+                        # venv and such
+                elif user_input =='4':
+                        print("getting other dependecies set up ") #getting the files downloaded for NN-meter 
+                elif user_input =='5':
+                    print("begining the process") #Walk the user through plugging in the device, 
+                    #enabling USB debugging, and to run "adb devices" to get the serial number.
+
+            
+           
+                
+            
 
             
 

@@ -1,17 +1,8 @@
+import sys
 import tf2onnx
 from keras import models, Input, layers
 import tensorflow as tf
 from nn_meter import load_latency_predictor
-import warnings
-import logging
-import sys
-import os
-
-# Mute scikit-learn version warnings
-warnings.filterwarnings("ignore", category=UserWarning)
-
-# Mute nn-Meter info logs and version warnings
-logging.getLogger('nn_meter').setLevel(logging.ERROR)
 
 # Define hardware and inference frameworks supported by nn-Meter
 hardware_inference_frameworks = [
@@ -33,15 +24,20 @@ def createModel():
     """
     return models.Sequential([
         Input((32, 32, 3)),
-        layers.Conv2D(32, (3, 3), activation='leaky_relu', padding='same'),
+        layers.Conv2D(32, (3, 3), padding='same'),
+        layers.LeakyReLU(),
         layers.MaxPooling2D((2, 2)),
-        layers.Conv2D(64, (3, 3), activation='leaky_relu', padding='same'),
+        layers.Conv2D(64, (3, 3), padding='same'),
+        layers.LeakyReLU(),
         layers.MaxPooling2D((2, 2)),
-        layers.Conv2D(128, (3, 3), activation='leaky_relu', padding='same'),
+        layers.Conv2D(128, (3, 3), padding='same'),
+        layers.LeakyReLU(),
         layers.MaxPooling2D((2, 2)),
-        layers.Conv2D(256, (3, 3), activation='leaky_relu', padding='same'),
+        layers.Conv2D(256, (3, 3), padding='same'),
+        layers.LeakyReLU(),
         layers.Flatten(),
-        layers.Dense(128, activation='leaky_relu'),
+        layers.Dense(128),
+        layers.LeakyReLU(),
         layers.Dense(10, activation='softmax')
     ])
 
@@ -65,8 +61,16 @@ def convertToONNX(model, filename):
 
     # Use a batch size of 1 to simulate single-image edge inference
     input_signature = [tf.TensorSpec([1, 32, 32, 3], tf.float32, name='x')]
-    onnx_model, _ = tf2onnx.convert.from_keras(
-        model, input_signature, opset=13)
+
+    @tf.function(input_signature=input_signature)
+    def model_fn(x):
+        return model(x, training=False)
+
+    onnx_model, _ = tf2onnx.convert.from_function(
+        model_fn,
+        input_signature=input_signature,
+        opset=13
+    )
 
     # Save the ONNX file (write binary)
     with open(filename, 'wb') as f:
@@ -83,9 +87,6 @@ def mapModelToFileExt():
     """
     pass
 
-# function that lets us keep the CLI clean 
-def clear():
-    os.system('cls' if os.name== 'nt' else 'clear')
 
 def main():
     """
@@ -111,11 +112,11 @@ def main():
 
     # Convert model to onnx format
     model_filename = convertToONNX(model, model_name)
-    
+
     # Handle user input
     while (True):
         while (True):
-            print(f"Using model: {model_filename}\n")
+            print(f"\nUsing model: {model_filename}\n")
             print('Options:')
             for i, platform in enumerate(hardware_inference_frameworks, start=1):
                 print(f"{i}. {platform}")
@@ -124,20 +125,20 @@ def main():
             user_input = input(
                 f"\nEnter a number (1-{num_frameworks}) to "
                 "select a device inference framework to perform "
-                "latency prediction on \n\n" \
-                "Or, if you are trying to create your own NN-meter inference framework, please enter \"new\" \n\n" 
+                "latency prediction on.\n\n"
+                "Or, if you are trying to create your own NN-meter inference framework, please enter \"new\" \n\n"
                 "Option: "
             )
             print("\n", end='')  # print newline
-              # exit case if we wanna leave early
-            if(user_input =='0' ):
+            # exit case if we wanna leave early
+            if (user_input == '0'):
                 sys.exit(0)
 
             try:
                 # Check if user entered a non-numeric value or invalid option
-                if ((not user_input.isnumeric) and user_input != "new" ):
+                if ((not user_input.isnumeric) and user_input != "new"):
                     raise ValueError
-                if(user_input == "new"):
+                if (user_input == "new"):
                     break
                 user_input = int(user_input)  # typecast input to integer
                 if (user_input < 1 or user_input > num_frameworks):
@@ -145,7 +146,6 @@ def main():
                 else:
                     break  # valid input = exit the loop
             except:
-                clear()
                 print("Error: Invalid option.\n")
                 continue
 
@@ -153,23 +153,22 @@ def main():
         if (user_input == "new"):
             Loop = True
             while (Loop):
-             
-                print("Quick start menu")
+
+                print("Quick-Start Menu")
                 print("1. Don't know where to start? Start here!")
-                print("2. Getting andoid studio ")
-                print("3. setting up your python venv")
-                print("4. Getting other NN-meter dependinces")
+                print("2. Getting Android Studio ")
+                print("3. Setting up your python venv")
+                print("4. Installing other NN-meter dependinces")
                 user_input = input(
                     f"\nEnter a number to select an option, or enter 0 to quit: ")
-                
+
                 if ((not user_input.isnumeric)):
                     print("Thats not a valid option")
                 elif user_input == '0':
                     print(user_input)
                     Loop = False
-                elif user_input =='1': # Letting user know the general plan 
-                    clear()
-                    print("""
+                elif user_input == '1':  # Letting user know the general plan
+                    print(r"""
 .-------------------------------------------------------------------------------------------------------------------------------------.
 |   _   _ _   _                          _                          _      _             _             _                 _     _      |
 |  | \ | | \ | |          _ __ ___   ___| |_ ___ _ __    __ _ _   _(_) ___| | __     ___| |_ __ _ _ __| |_    __ _ _   _(_) __| | ___ |
@@ -186,7 +185,8 @@ def main():
                     # Step 1
                     print("STEP 1: ENVIRONMENT & TOOLCHAIN PREPARATION")
                     print("  - Objective: Get your development ecosystem together.")
-                    print("  - Needs: Android Studio/SDK, Python virtual environment (v3.8+), ")
+                    print(
+                        "  - Needs: Android Studio/SDK, Python virtual environment (v3.8+), ")
                     print("    and specific hardware drivers/compilers.")
                     print("  - Duration: ~1 hour\n")
 
@@ -200,21 +200,24 @@ def main():
                     # Step 3
                     print("STEP 3: IR PARSING & OP MAPPING")
                     print("  - Objective: Bridge your model to hardware instructions.")
-                    print("  - Needs: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
+                    print(
+                        "  - Needs: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
                     print("    to your target’s specific operational primitives.")
                     print("  - Duration: ~2-3 hours\n")
 
                     # Step 4
                     print("STEP 4: LATENCY PREDICTOR DEVELOPMENT")
                     print("  - Objective: Train your estimation engine.")
-                    print("  - Needs: Performance data collection from your actual hardware ")
+                    print(
+                        "  - Needs: Performance data collection from your actual hardware ")
                     print("    to regress latency for target operators.")
                     print("  - Duration: ~2-4 hours\n")
 
                     # Step 5
                     print("STEP 5: INTEGRATION & VALIDATION")
                     print("  - Objective: Stitch and verify the workflow.")
-                    print("  - Needs: Registering your builder in the NN-Meter framework and ")
+                    print(
+                        "  - Needs: Registering your builder in the NN-Meter framework and ")
                     print("    running smoke tests against a standard model suite.")
                     print("  - Duration: ~1-2 hours\n")
 
@@ -227,53 +230,56 @@ def main():
                     print("="*80 + "\n")
 
                     print("--- DIRECTORY STRUCTURE ---")
-                    print("When you finalize your custom predictor, it should be organized as follows:")
+                    print(
+                        "When you finalize your custom predictor, it should be organized as follows:")
                     print("  /customized_predictor/")
-                    print("  ├── meta.yaml              # Configuration/metadata for registration")
-                    print("  ├── fusion_rules.json      # Mapping of supported operator fusions")
-                    print("  └── [kernel_name].pkl      # Latency predictor models (Pickle files) for each kernel\n")
+                    print(
+                        "  ├── meta.yaml              # Configuration/metadata for registration")
+                    print(
+                        "  ├── fusion_rules.json      # Mapping of supported operator fusions")
+                    print(
+                        "  └── [kernel_name].pkl      # Latency predictor models (Pickle files) for each kernel\n")
 
                     print("--- KEY FILE FORMATS EXPLAINED ---")
                     print("1. meta.yaml")
                     print("   - Type: YAML")
-                    print("   - Purpose: Acts as the manifest. It defines the 'name' for your predictor,")
-                    print("     the 'category' (e.g., cpu, gpu, npu), and links to the predictor folder.")
+                    print(
+                        "   - Purpose: Acts as the manifest. It defines the 'name' for your predictor,")
+                    print(
+                        "     the 'category' (e.g., cpu, gpu, npu), and links to the predictor folder.")
                     print("\n2. fusion_rules.json")
                     print("   - Type: JSON")
-                    print("   - Purpose: Contains the detected fusion rules that inform NN-Meter how to")
-                    print("     group operators into kernels for your specific hardware architecture.")
+                    print(
+                        "   - Purpose: Contains the detected fusion rules that inform NN-Meter how to")
+                    print(
+                        "     group operators into kernels for your specific hardware architecture.")
                     print("\n3. [kernel_name].pkl")
                     print("   - Type: Python Pickle")
-                    print("   - Purpose: Serialized machine learning models (typically trained regressors)")
-                    print("     that output predicted latency given specific kernel input parameters.")
+                    print(
+                        "   - Purpose: Serialized machine learning models (typically trained regressors)")
+                    print(
+                        "     that output predicted latency given specific kernel input parameters.")
                     print("\n" + "="*80)
-                    print("Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in")
+                    print(
+                        "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in")
                     print("your fusion rules to avoid runtime mapping errors")
 
                     input(f"Press any button to continue")
-                    clear()
-                    
+                    print()
 
-
-                elif user_input =='2': # walking user through setting up android studio
-                    print("andoid studio")
+                elif user_input == '2':  # walking user through setting up android studio
+                    print("Android Studio")
                 elif user_input == '3':
-                        print("Getting Python and other tools up to date ") # getting user to install right version of python. setting up 
-                        # venv and such
-                elif user_input =='4':
-                        print("getting other dependecies set up ") #getting the files downloaded for NN-meter 
-                elif user_input =='5':
-                    print("begining the process") #Walk the user through plugging in the device, 
-                    #enabling USB debugging, and to run "adb devices" to get the serial number.
-
-            
-           
-                
-            
-
-            
-
-
+                    # getting user to install right version of python. setting up
+                    print("Getting Python and other tools up to date ")
+                    # venv and such
+                elif user_input == '4':
+                    # getting the files downloaded for NN-meter
+                    print("getting other dependecies set up ")
+                elif user_input == '5':
+                    # Walk the user through plugging in the device,
+                    print("begining the process")
+                    # enabling USB debugging, and to run "adb devices" to get the serial number.
 
         # Predict the inference latency of the model on the device
         predictor = load_latency_predictor(

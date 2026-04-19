@@ -184,9 +184,7 @@ def main():
                 print("Quick-Start Menu")
                 print("1. Overiew")
                 print("2. Environment Setup")
-                print("3. Setting up your python venv")
-                print("4. Installing other NN-meter dependencies")
-                print("5. Custom Device Setup")
+                print("3. Custom Device Setup")
                 user_input = input(
                     f"\nEnter a number to select an option, or enter b to go back: "
                 )

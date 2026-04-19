@@ -4,7 +4,7 @@ from nn_meter.builder import builder_config
 from nn_meter.builder.backends import connect_backend
 from nn_meter.builder.nn_meter_builder import build_predictor_for_kernel
 
-workspace = "./z839"
+workspace = "./z839_workspace"
 builder_config.init(workspace)
 
 # Instantiate the backend connection once

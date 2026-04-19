@@ -8,7 +8,7 @@ import monkeypatch  # type: ignore # pylint: disable=unused-import
 
 # initialize builder
 builder_config.init(
-    workspace_path="./z839_workspace '"
+    workspace_path="./z839_workspace"
 )
 
 # create testcases

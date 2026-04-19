@@ -5,6 +5,8 @@ import tensorflow as tf
 from nn_meter import load_latency_predictor
 import os
 import yaml
+# import detect_fusion_rules
+# import build_latency_predictors
 from yaml import load, dump
 # pyyaml documentationnnnn: https://pyyaml.org/wiki/PyYAMLDocumentation
 try:
@@ -309,6 +311,7 @@ def main():
 
                 # Setup environment (python install, venv, and dependencies)
                 elif user_input == '2':
+                    clear()
                     print("\n" + "="*75)
                     print("NN-METER BUILDER ENVIRONMENT SETUP")
                     print("="*75 + "\n")
@@ -318,17 +321,15 @@ def main():
 
                     # Step 1
                     print("STEP 1: CREATE BUILDER WORKSPACE")
-                    print("  - Command:")
                     print(
-                        "    nn-meter create --tflite-workspace <path/to/place/workspace/>\n")
+                        "  - Command: nn-meter create --tflite-workspace <path/to/place/workspace/>\n"
+                    )
                     pause()
-                    clear()
 
                     # Step 2
                     print("STEP 2: INSTALL PYTHON VERSION 3.9")
                     print("  - Source: https://www.python.org/downloads/\n")
                     pause()
-                    clear()
 
                     # Step 3
                     print("STEP 3: CREATE VIRTUAL ENVIRONMENT")
@@ -337,7 +338,6 @@ def main():
                     print("  - Windows Command:")
                     print("    py -3.9 -m venv <env_name>\n")
                     pause()
-                    clear()
 
                     # Step 4
                     print("STEP 4: ACTIVATE VIRTUAL ENVIRONMENT")
@@ -346,7 +346,6 @@ def main():
                     print("  - Windows Command:")
                     print("    <env_name>\\Scripts\\activate\n")
                     pause()
-                    clear()
 
                     # Step 5
                     print("STEP 5: INSTALL REQUIRED PACKAGES")
@@ -355,13 +354,11 @@ def main():
                     print(
                         "    pip install -r tool/docs/requirements/requirements_builder.txt\n")
                     pause()
-                    clear()
 
                     # Step 6
                     print("STEP 6: INSTALL ANDROID STUDIO")
                     print("  - Source: https://developer.android.com/studio\n")
                     pause()
-                    clear()
 
                     # Step 7
                     print("STEP 7: DOWNLOAD BENCHMARK MODEL VERSION 2.1")
@@ -371,13 +368,27 @@ def main():
                     clear()
                 elif user_input == '3':
                     clear()
+                    print("="*75)
+                    print("CUSTOM DEVICE SETUP")
+                    print("="*75 + "\n")
+
+                    print("STEP 1: GET DEVICE SERIAL CODE")
+                    print("  - Android Studio/Terminal Command:")
+                    print("    adb devices")
+                    print("\n  - Command output:"
+                          "\n    List of devices attached",
+                          "\n    [serial_number][state]\n"
+                          )
+                    pause()
+
+                    print("STEP 2: SET DEVICE SERIAL CODE")
                     stream = open(
                         './z839_workspace/configs/backend_config.yaml', 'r'
                     )
                     config = yaml.load(stream, Loader=Loader)
 
                     device_serial = input(
-                        "\nEnter the device serial you would like to use: "
+                        "Enter the serial of the target device to build a latency predictor on: "
                     )
                     print()
                     # Set the device serial to what the user entered
@@ -390,6 +401,24 @@ def main():
                     yaml.dump(config, stream)
                     print(f"Device serial set as '{device_serial}'.\n")
 
+                    print("STEP 3: PUSH BENCHMARK MODEL TO DEVICE")
+                    print("  - Android Studio/Terminal Command:")
+                    print(
+                        "    adb [-s ] push bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model /data/local/tmp\n"
+                    )
+                    pause()
+
+                    print("STEP 4: ADD EXECUTABLE PERMISSION TO BENCHMARK MODEL")
+                    print("  - Android Studio/Terminal Command:")
+                    print("    adb shell chmod + x / data/local/tmp/benchmark_model\n")
+                    pause()
+
+                    print("STEP 5: TEST CONNECTION")
+                    print("  - Android Studio/Terminal Command:")
+                    print(
+                        "    nn-meter connect --backend --workspace <path/to/workspace>\n"
+                    )
+                    print("Device setup complete!\n")
                     pause()
                     clear()
                 elif user_input == '4':
@@ -399,6 +428,8 @@ def main():
                     print("="*75 + "\n")
                     pause()
                     clear()
+                    # detect_fusion_rules
+                    # build_latency_predictors
 
                     # Walk the user through plugging in the device
                     # enabling USB debugging, and to run "adb devices" to get the serial number.

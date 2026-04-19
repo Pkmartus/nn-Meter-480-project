@@ -307,7 +307,7 @@ def main():
                     print("  - Linux Command:")
                     print("    python3.9 -m venv <env_name>")
                     print("  - Windows Command:")
-                    print("    py 3.9 -m venv <env_name>")
+                    print("    py -3.9 -m venv <env_name>")
                     pause()
 
                     # Step 4

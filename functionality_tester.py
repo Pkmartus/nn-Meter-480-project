@@ -404,7 +404,7 @@ def main():
                     print("STEP 3: PUSH BENCHMARK MODEL TO DEVICE")
                     print("  - Android Studio/Terminal Command:")
                     print(
-                        "    adb [-s ] push bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model /data/local/tmp\n"
+                        "    adb -s <SERIAL> push bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model /data/local/tmp\n"
                     )
                     pause()
 

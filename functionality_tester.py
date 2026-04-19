@@ -368,6 +368,7 @@ def main():
                     clear()
                 elif user_input == '3':
                     clear()
+                    print()
                     print("="*75)
                     print("CUSTOM DEVICE SETUP")
                     print("="*75 + "\n")
@@ -388,7 +389,7 @@ def main():
                     config = yaml.load(stream, Loader=Loader)
 
                     device_serial = input(
-                        "Enter the serial of the target device to build a latency predictor on: "
+                        "Enter the serial of the target device to build a latency predictor on here: "
                     )
                     print()
                     # Set the device serial to what the user entered
@@ -423,6 +424,7 @@ def main():
                     clear()
                 elif user_input == '4':
                     clear()
+                    print()
                     print("="*75)
                     print("Build Custom Predictor")
                     print("="*75 + "\n")
@@ -430,9 +432,9 @@ def main():
                     clear()
                     # detect_fusion_rules
                     # build_latency_predictors
+                else:
+                    print("\nError: Invalid option.\n")
 
-                    # Walk the user through plugging in the device
-                    # enabling USB debugging, and to run "adb devices" to get the serial number.
         # Exit the loop if user entered 0 previously
         if (Back):
             clear()

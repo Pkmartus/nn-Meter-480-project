@@ -17,7 +17,8 @@ hardware_inference_frameworks = [
     'cortexA76cpu_tflite21',
     'adreno640gpu_tflite21',
     'adreno630gpu_tflite21',
-    'myriadvpu_openvino2019r2'
+    'myriadvpu_openvino2019r2',
+    'z839_tflite21'
 ]
 num_frameworks = len(hardware_inference_frameworks)
 

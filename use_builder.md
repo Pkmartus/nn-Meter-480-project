@@ -7,6 +7,7 @@
     pip install -r tool/docs/requirements/requirements.txt
     (not sure which of these is needed)
 6. install android studio (yes really wow)
+    install sdk
 7. download benchmark model (2.1 version) from https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data
 8. find device: adb devices
 9. push to device:
@@ -17,7 +18,7 @@
 10. edit backend_config.yaml with serial and correct paths
 11. Test connection:
     nn-meter connect --backend <backend-name> --workspace <path/to/workspace>
-12.run script
+12.run detect_fusion_rules.py
     currently wrestling with all latency outputting as 0
     gemini helped write helper functions to circomvent issues with device compatability
         device had less cores than nn-meter expected.
@@ -28,4 +29,8 @@
 15. downgraded packages and reran
 16. successfully created predictor for conv-bn-relu
 17. created custom script to loop through kernel types in case of crash
-
+18. predictors finished
+19. setup custom predictor
+    copy predictors into folder and rename
+20. prepare yaml file
+21. register predictor by running nn-meter register predictor    

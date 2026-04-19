@@ -1,0 +1,48 @@
+import os
+import re
+import subprocess
+import ppadb.device
+import tensorflow as tf
+
+def robust_convert_and_push(self, src, dest, mode=0o644, progress=None):
+    if os.path.isdir(src):
+        tflite_path = src.rstrip('/') + ".tflite"
+        if not os.path.exists(tflite_path):
+            # BYPASS KERAS ENTIRELY
+            # Load the raw underlying TensorFlow execution graph instead
+            imported = tf.saved_model.load(src)
+            concrete_func = imported.signatures[tf.saved_model.DEFAULT_SERVING_SIGNATURE_DEF_KEY]
+            
+            # Convert directly from the concrete function
+            converter = tf.lite.TFLiteConverter.from_concrete_functions([concrete_func], imported)
+            tflite_model = converter.convert()
+            
+            with open(tflite_path, 'wb') as f:
+                f.write(tflite_model)
+        src = tflite_path
+        if not dest.endswith('.tflite'):
+            dest = dest.rstrip('/') + ".tflite"
+
+    subprocess.run(["adb", "-s", self.serial, "push", src, dest], check=True, capture_output=True)
+
+def robust_adb_shell(self, command, handler=None, timeout=None):
+    if "taskset" in command:
+        command = re.sub(r'taskset\s+\w+\s+', '', command)
+    graph_match = re.search(r'--graph=([^\s]+)', command)
+    if graph_match:
+        graph_path = graph_match.group(1)
+        if not graph_path.endswith('.tflite'):
+            command = command.replace(graph_path, graph_path.rstrip('/') + ".tflite")
+    
+    print(f"\n[DEBUG] Sending ADB Command: {command}")
+    res = subprocess.run(["adb", "-s", self.serial, "shell", command], capture_output=True, text=True)
+    
+    if res.stdout.strip():
+        print(f"[DEBUG] Android STDOUT: {res.stdout.strip()}")
+    if res.stderr.strip():
+        print(f"[DEBUG] Android STDERR: {res.stderr.strip()}")
+        
+    return res.stdout
+
+ppadb.device.Device.push = robust_convert_and_push
+ppadb.device.Device.shell = robust_adb_shell

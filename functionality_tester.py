@@ -98,14 +98,14 @@ def mapModelToFileExt():
 
 def clear():
     """
-    Function that helps keep the CLI clean
+    Function that helps keep the CLI clean.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def pause():
     """
-    Function that helps with pacing of CLI output
+    Function that helps with pacing of CLI output.
     """
     input(f"Press Enter to continue...")
     print()
@@ -151,7 +151,7 @@ def main():
                 f"\nEnter a number (1-{num_frameworks}) to "
                 "select a device inference framework to perform "
                 "latency prediction on.\n"
-                "Or, if you are trying to create your own NN-meter inference framework, please enter \"new\".\n\n"
+                "Or, if you would like to create your own NN-meter inference framework, please enter \"new\".\n\n"
                 "Option: "
             )
             # exit case if we wanna leave early
@@ -218,44 +218,50 @@ def main():
                     print("STEP 1: ENVIRONMENT & TOOLCHAIN PREPARATION")
                     print("  - Objective: Get your development ecosystem together.")
                     print(
-                        "  - Needs: Android Studio/SDK, Python virtual environment (v3.8+), ")
+                        "  - Requires: Android Studio/SDK, Python virtual environment (v3.8+), ")
                     print("    and specific hardware drivers/compilers.")
                     print("  - Duration: ~1 hour\n")
+                    pause()
 
                     # Step 2
                     print("STEP 2: HARDWARE ARCHITECTURE SPECIFICATION")
                     print("  - Objective: Formalize your device's capabilities.")
-                    print("  - Needs: JSON descriptor files defining compute units, ")
+                    print(
+                        "  - Requires: JSON descriptor files defining compute units, ")
                     print("    memory hierarchy, and clock speeds.")
                     print("  - Duration: ~1 hour\n")
+                    pause()
 
                     # Step 3
                     print("STEP 3: IR PARSING & OP MAPPING")
                     print("  - Objective: Bridge your model to hardware instructions.")
                     print(
-                        "  - Needs: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
+                        "  - Requires: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
                     print("    to your target’s specific operational primitives.")
                     print("  - Duration: ~2-3 hours\n")
+                    pause()
 
                     # Step 4
                     print("STEP 4: LATENCY PREDICTOR DEVELOPMENT")
                     print("  - Objective: Train your estimation engine.")
                     print(
-                        "  - Needs: Performance data collection from your actual hardware ")
+                        "  - Requires: Performance data collection from your actual hardware ")
                     print("    to regress latency for target operators.")
                     print("  - Duration: ~2-4 hours\n")
+                    pause()
 
                     # Step 5
                     print("STEP 5: INTEGRATION & VALIDATION")
                     print("  - Objective: Stitch and verify the workflow.")
                     print(
-                        "  - Needs: Registering your builder in the NN-Meter framework and ")
+                        "  - Requires: Registering your builder in the NN-Meter framework and ")
                     print("    running smoke tests against a standard model suite.")
                     print("  - Duration: ~1-2 hours\n")
 
                     print("-" * 75)
                     print("⚡ TOTAL ESTIMATED EFFORT: 7 to 11 hours")
                     print("-" * 75 + "\n")
+                    pause()
 
                     print("="*80)
                     print(" NN-METER: CUSTOM BUILDER ARCHITECTURE & FILE FORMATS ")
@@ -271,6 +277,7 @@ def main():
                         "  ├── fusion_rules.json      # Mapping of supported operator fusions")
                     print(
                         "  └── [kernel_name].pkl      # Latency predictor models (Pickle files) for each kernel\n")
+                    pause()
 
                     print("--- KEY FILE FORMATS EXPLAINED ---")
                     print("1. meta.yaml")
@@ -296,8 +303,8 @@ def main():
                         "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in",
                         "your fusion rules to avoid runtime mapping errors.\n"
                     )
-
                     pause()
+                    clear()
                     print()
 
                 # Setup environment (python install, venv, and dependencies)
@@ -371,6 +378,7 @@ def main():
                     # getting the files downloaded for NN-meter
                     print("Getting other dependecies set up")
                 elif user_input == '5':
+                    clear()
                     stream = open(
                         './z839_workspace/configs/backend_config.yaml', 'r'
                     )
@@ -379,6 +387,7 @@ def main():
                     device_serial = input(
                         "\nEnter the device serial you would like to use: "
                     )
+                    print()
                     # Set the device serial to what the user entered
                     config['DEVICE_SERIAL'] = device_serial
 
@@ -387,10 +396,11 @@ def main():
                         './z839_workspace/configs/backend_config.yaml', 'w'
                     )
                     yaml.dump(config, stream)
-                    print(f"Device serial set to '{device_serial}'.")
+                    print(f"Device serial set as '{device_serial}'.\n")
 
                     input(f"Press enter to continue.")
                     print()
+                    clear()
 
                     # Walk the user through plugging in the device
                     # enabling USB debugging, and to run "adb devices" to get the serial number.

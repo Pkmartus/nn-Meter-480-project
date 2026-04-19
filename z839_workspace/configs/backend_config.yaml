@@ -1,4 +1,4 @@
 BENCHMARK_MODEL_PATH: /data/local/tmp/benchmark_model_cpu_v2.1
-DEVICE_SERIAL: test2
+DEVICE_SERIAL: test
 KERNEL_PATH: /data/local/tmp/kernels
 REMOTE_MODEL_DIR: /data/local/tmp/tflite_bench

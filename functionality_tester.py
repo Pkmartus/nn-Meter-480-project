@@ -342,7 +342,7 @@ def main():
                     print("  - Linux Command:")
                     print("    source <env_name>/bin/activate\n")
                     print("  - Windows Command:")
-                    print("    <env_name>\\Scripts\activate\n")
+                    print("    <env_name>\\Scripts\\activate\n")
                     pause()
                     clear()
 

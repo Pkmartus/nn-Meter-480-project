@@ -1,6 +1,6 @@
 1. create builder workspace by running: nn-meter create --tflite-workspace <path/to/place/workspace/>
-2. download python3.10
-3. create virtual environment: python3.10 -m venv .z839_builder                        
+2. download python3.9
+3. create virtual environment: python3.9 -m venv .z839_builder                        
 4. activate venv source .z839_builder/bin/activate
 5. install requirements:
     pip install -r tool/docs/requirements/requirements_builder.txt
@@ -23,3 +23,9 @@
         device had less cores than nn-meter expected.
         tests were being generated as folders rather than .tflite files, a converter was needed
         ppadb was having issues copying data so a generated helper function replaces some of those operations.
+13. moved the monkeypatch to it's own file
+14. tried running build_latency predictor failed because od a keras version error
+15. downgraded packages and reran
+16. successfully created predictor for conv-bn-relu
+17. created custom script to loop through kernel types in case of crash
+

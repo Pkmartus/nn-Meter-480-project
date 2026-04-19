@@ -182,7 +182,7 @@ def main():
             Loop = True
             while (Loop):
                 print("Quick-Start Menu")
-                print("1. Overiew")
+                print("1. Overview")
                 print("2. Environment Setup")
                 print("3. Custom Device Setup")
                 user_input = input(

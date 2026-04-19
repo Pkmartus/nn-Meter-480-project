@@ -95,6 +95,13 @@ def clear():
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def pause():
+    """
+    Function that helps with pacing of CLI output
+    """
+    input(f"Press Enter to continue...")
+    print()
+
 
 def main():
     """
@@ -164,8 +171,8 @@ def main():
             while (Loop):
 
                 print("Quick-Start Menu")
-                print("1. Don't know where to start? Start here!")
-                print("2. Getting Android Studio ")
+                print("1. Overiew")
+                print("2. Environment Setup")
                 print("3. Setting up your python venv")
                 print("4. Installing other NN-meter dependinces")
                 user_input = input(
@@ -274,60 +281,59 @@ def main():
                         "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in")
                     print("your fusion rules to avoid runtime mapping errors")
 
-                    input(f"Press any button to continue")
+                    pause()  # pause for user to read the overview
                     print()
 
                 elif user_input == '2':  # Setup environment (python install, venv, and dependencies)
                     print("="*75)
                     print("NN-METER BUILDER ENVIRONMENT SETUP")
                     print("="*75 + "\n")
+                    print("\n Open a new terminal and follow the steps below.")
+                    pause()
 
                     # Step 1
-                    print("STEP 1: CREATE BUILDER WORKSPACE")   # command didn't work for me?
+                    print("STEP 1: CREATE BUILDER WORKSPACE")  
                     print("  - Command:")
                     print("    nn-meter create --tflite-workspace <path/to/place/workspace/>")
-                    print()
+                    pause()
 
                     # Step 2
                     print("STEP 2: INSTALL PYTHON VERSION 3.9")
                     print("  - Source: https://www.python.org/downloads/")
-                    print()
+                    pause()
 
                     # Step 3
-                    print("STEP 3: CREATE VIRTUAL ENVIRONMENT") # I used: py -3.9 -m venv .z839_builder
+                    print("STEP 3: CREATE VIRTUAL ENVIRONMENT") 
                     print("  - Linux Command:")
-                    print("    python3.9 -m venv .z839_builder")
+                    print("    python3.9 -m venv <env_name>")
                     print("  - Windows Command:")
-                    print("    py 3.9 -m venv .z839_builder")
-                    print()
+                    print("    py 3.9 -m venv <env_name>")
+                    pause()
 
                     # Step 4
-                    print("STEP 4: ACTIVATE VIRTUAL ENVIRONMENT") # I used: activate venv source .\.z839_builder\bin\activate
+                    print("STEP 4: ACTIVATE VIRTUAL ENVIRONMENT")
                     print("  - Linux Command:")
-                    print("    source .z839_builder/bin/activate")
+                    print("    source <env_name>/bin/activate")
                     print("  - Windows Command:")
-                    print("    .venv\Scripts\activate")
-                    print()
+                    print("    <env_name>\Scripts\activate")
+                    pause()
 
                     # Step 5
                     print("STEP 5: INSTALL REQUIRED PACKAGES")
                     print("  - Commands:")
                     print("    pip install -r tool/docs/requirements/requirements.txt")
                     print("    pip install -r tool/docs/requirements/requirements_builder.txt")
-                    print()
+                    pause()
 
                     # Step 6
                     print("STEP 6: INSTALL ANDROID STUDIO")
                     print("  - Source: https://developer.android.com/studio")
-                    print()
+                    pause()
 
                     # Step 7
                     print("STEP 7: DOWNLOAD BENCHMARK MODEL VERSION 2.1")
-                    print("  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data") # Where to extract?
-                    print()
-
-                    input(f"Press any button to continue")
-                    print()
+                    print("  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data")
+                    pause()
 
                 elif user_input == '3':
                     # getting user to install right version of python. setting up

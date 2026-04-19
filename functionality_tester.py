@@ -4,6 +4,13 @@ from keras import models, Input, layers
 import tensorflow as tf
 from nn_meter import load_latency_predictor
 import os
+import yaml
+from yaml import load, dump
+# pyyaml documentationnnnn: https://pyyaml.org/wiki/PyYAMLDocumentation
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
 
 # Define hardware and inference frameworks supported by nn-Meter
 hardware_inference_frameworks = [
@@ -17,10 +24,10 @@ num_frameworks = len(hardware_inference_frameworks)
 
 def createModel():
     """"
-    Defines a CNN model architecture to be used by nn-Meter for latency 
+    Defines a CNN model architecture to be used by nn-Meter for latency
     prediction.
 
-    Returns: keras.src.engine.sequential.Sequential: the TensorFlow 
+    Returns: keras.src.engine.sequential.Sequential: the TensorFlow
     Keras CNN model.
     """
     return models.Sequential([
@@ -45,12 +52,12 @@ def createModel():
 
 def convertToONNX(model, filename):
     """
-    Converts a TensorFlow Keras convolutional neural network model into 
-    an ONNX format for nn-Meter latency prediction given a specified 
+    Converts a TensorFlow Keras convolutional neural network model into
+    an ONNX format for nn-Meter latency prediction given a specified
     device inference framework.
 
-    Args: 
-        model (keras.src.engine.sequential.Sequential): The TensorFlow 
+    Args:
+        model (keras.src.engine.sequential.Sequential): The TensorFlow
          Keras model object to be used for latency prediction.
         filename (str): The filename of the model being converted to
          ONNX format.
@@ -82,8 +89,8 @@ def convertToONNX(model, filename):
 
 def mapModelToFileExt():
     """
-    TODO: Write mapModelToFileExt function that maps model file 
-    extension to variable for model_type parameter used by 
+    TODO: Write mapModelToFileExt function that maps model file
+    extension to variable for model_type parameter used by
     nnMeterPredictor object (predictor.predict).
     """
     pass
@@ -94,6 +101,7 @@ def clear():
     Function that helps keep the CLI clean
     """
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def pause():
     """
@@ -120,8 +128,8 @@ def main():
     model_name = 'custom_model'
 
     """
-    TODO: Implement mapModelToFileExt function to get the model file 
-    extension. This will be used when setting the model_type parameter 
+    TODO: Implement mapModelToFileExt function to get the model file
+    extension. This will be used when setting the model_type parameter
     used by the nnMeterPredictor object (predictor.predict).
     """
 
@@ -131,6 +139,8 @@ def main():
     # Handle user input
     while (True):
         while (True):
+            Back = False
+            clear()
             print(f"\nUsing model: {model_filename}\n")
             print('Options:')
             for i, platform in enumerate(hardware_inference_frameworks, start=1):
@@ -140,14 +150,15 @@ def main():
             user_input = input(
                 f"\nEnter a number (1-{num_frameworks}) to "
                 "select a device inference framework to perform "
-                "latency prediction on.\n\n"
-                "Or, if you are trying to create your own NN-meter inference framework, please enter \"new\" \n\n"
+                "latency prediction on.\n"
+                "Or, if you are trying to create your own NN-meter inference framework, please enter \"new\".\n\n"
                 "Option: "
             )
-            print("\n", end='')  # print newline
             # exit case if we wanna leave early
-            if (user_input == '0'):
+            if (user_input.lower() == 'q' or user_input.lower() == 'quit'):
+                print("\nGoodbye!")
                 sys.exit(0)
+            print("\n", end='')  # print newline
 
             try:
                 # Check if user entered a non-numeric value or invalid option
@@ -167,22 +178,26 @@ def main():
 
                 # this can be placed within the main loop later just keeping it clean for now
         if (user_input == "new"):
+            clear()
             Loop = True
             while (Loop):
-
                 print("Quick-Start Menu")
                 print("1. Overiew")
                 print("2. Environment Setup")
                 print("3. Setting up your python venv")
-                print("4. Installing other NN-meter dependinces")
+                print("4. Installing other NN-meter dependencies")
+                print("5. Custom Device Setup")
                 user_input = input(
-                    f"\nEnter a number to select an option, or enter 0 to quit: ")
+                    f"\nEnter a number to select an option, or enter b to go back: "
+                )
 
-                if ((not user_input.isnumeric)):
-                    print("Thats not a valid option")
-                elif user_input == '0':
+                if user_input.lower() == 'b' or user_input.lower() == 'back':
                     print(user_input)
                     Loop = False
+                    Back = True
+                elif ((not user_input.isnumeric())):
+                    clear()
+                    print("\nError: Invalid option.\n")
                 elif user_input == '1':  # Letting user know the general plan
                     clear()
                     print(r"""
@@ -278,74 +293,111 @@ def main():
                         "     that output predicted latency given specific kernel input parameters.")
                     print("\n" + "="*80)
                     print(
-                        "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in")
-                    print("your fusion rules to avoid runtime mapping errors")
+                        "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in",
+                        "your fusion rules to avoid runtime mapping errors.\n"
+                    )
 
-                    pause()  # pause for user to read the overview
+                    pause()
                     print()
 
-                elif user_input == '2':  # Setup environment (python install, venv, and dependencies)
-                    print("="*75)
+                # Setup environment (python install, venv, and dependencies)
+                elif user_input == '2':
+                    print(f"\n{"="*75}")
                     print("NN-METER BUILDER ENVIRONMENT SETUP")
                     print("="*75 + "\n")
-                    print("\n Open a new terminal and follow the steps below.")
+                    print("Open a new terminal and follow the steps below.\n")
                     pause()
+                    clear()
 
                     # Step 1
-                    print("STEP 1: CREATE BUILDER WORKSPACE")  
+                    print("STEP 1: CREATE BUILDER WORKSPACE")
                     print("  - Command:")
-                    print("    nn-meter create --tflite-workspace <path/to/place/workspace/>")
+                    print(
+                        "    nn-meter create --tflite-workspace <path/to/place/workspace/>\n")
                     pause()
+                    clear()
 
                     # Step 2
                     print("STEP 2: INSTALL PYTHON VERSION 3.9")
-                    print("  - Source: https://www.python.org/downloads/")
+                    print("  - Source: https://www.python.org/downloads/\n")
                     pause()
+                    clear()
 
                     # Step 3
-                    print("STEP 3: CREATE VIRTUAL ENVIRONMENT") 
+                    print("STEP 3: CREATE VIRTUAL ENVIRONMENT")
                     print("  - Linux Command:")
-                    print("    python3.9 -m venv <env_name>")
+                    print("    python3.9 -m venv <env_name>\n")
                     print("  - Windows Command:")
-                    print("    py -3.9 -m venv <env_name>")
+                    print("    py 3.9 -m venv <env_name>\n")
                     pause()
+                    clear()
 
                     # Step 4
                     print("STEP 4: ACTIVATE VIRTUAL ENVIRONMENT")
                     print("  - Linux Command:")
-                    print("    source <env_name>/bin/activate")
+                    print("    source <env_name>/bin/activate\n")
                     print("  - Windows Command:")
-                    print("    <env_name>\Scripts\activate")
+                    print("    <env_name>\\Scripts\activate\n")
                     pause()
+                    clear()
 
                     # Step 5
                     print("STEP 5: INSTALL REQUIRED PACKAGES")
                     print("  - Commands:")
                     print("    pip install -r tool/docs/requirements/requirements.txt")
-                    print("    pip install -r tool/docs/requirements/requirements_builder.txt")
+                    print(
+                        "    pip install -r tool/docs/requirements/requirements_builder.txt\n")
                     pause()
+                    clear()
 
                     # Step 6
                     print("STEP 6: INSTALL ANDROID STUDIO")
-                    print("  - Source: https://developer.android.com/studio")
+                    print("  - Source: https://developer.android.com/studio\n")
                     pause()
+                    clear()
 
                     # Step 7
                     print("STEP 7: DOWNLOAD BENCHMARK MODEL VERSION 2.1")
-                    print("  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data")
+                    print(
+                        "  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data\n")
                     pause()
+                    clear()
 
                 elif user_input == '3':
                     # getting user to install right version of python. setting up
-                    print("Getting Python and other tools up to date ")
+                    print("Getting Python and other tools up to date")
                     # venv and such
                 elif user_input == '4':
                     # getting the files downloaded for NN-meter
-                    print("getting other dependecies set up ")
+                    print("Getting other dependecies set up")
                 elif user_input == '5':
-                    # Walk the user through plugging in the device,
-                    print("begining the process")
+                    stream = open(
+                        './z839_workspace/configs/backend_config.yaml', 'r'
+                    )
+                    config = yaml.load(stream, Loader=Loader)
+
+                    device_serial = input(
+                        "\nEnter the device serial you would like to use: "
+                    )
+                    # Set the device serial to what the user entered
+                    config['DEVICE_SERIAL'] = device_serial
+
+                    # Update the config yaml with the device serial
+                    stream = open(
+                        './z839_workspace/configs/backend_config.yaml', 'w'
+                    )
+                    yaml.dump(config, stream)
+                    print(f"Device serial set to '{device_serial}'.")
+
+                    input(f"Press enter to continue.")
+                    print()
+
+                    # Walk the user through plugging in the device
                     # enabling USB debugging, and to run "adb devices" to get the serial number.
+        # Exit the loop if user entered 0 previously
+        if (Back):
+            clear()
+            continue
 
         # Predict the inference latency of the model on the device
         predictor = load_latency_predictor(

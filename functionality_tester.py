@@ -185,6 +185,7 @@ def main():
                 print("1. Overview")
                 print("2. Environment Setup")
                 print("3. Custom Device Setup")
+                print("4. Build Custom Predictor")
                 user_input = input(
                     f"\nEnter a number to select an option, or enter b to go back: "
                 )
@@ -367,7 +368,6 @@ def main():
                         "  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data\n")
                     pause()
                     clear()
-
                 elif user_input == '3':
                     clear()
                     stream = open(
@@ -389,8 +389,14 @@ def main():
                     yaml.dump(config, stream)
                     print(f"Device serial set as '{device_serial}'.\n")
 
-                    input(f"Press enter to continue.")
-                    print()
+                    pause()
+                    clear()
+                elif user_input == '4':
+                    clear()
+                    print("="*75)
+                    print("Build Custom Predictor")
+                    print("="*75 + "\n")
+                    pause()
                     clear()
 
                     # Walk the user through plugging in the device

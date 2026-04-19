@@ -307,7 +307,7 @@ def main():
 
                 # Setup environment (python install, venv, and dependencies)
                 elif user_input == '2':
-                    print(f"\n{"="*75}")
+                    print("\n" + "="*75)
                     print("NN-METER BUILDER ENVIRONMENT SETUP")
                     print("="*75 + "\n")
                     print("Open a new terminal and follow the steps below.\n")

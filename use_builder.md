@@ -29,4 +29,8 @@
 15. downgraded packages and reran
 16. successfully created predictor for conv-bn-relu
 17. created custom script to loop through kernel types in case of crash
-
+18. predictors finished
+19. setup custom predictor
+    copy predictors into folder and rename
+20. prepare yaml file
+21. register predictor by running nn-meter register predictor    

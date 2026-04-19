@@ -3,6 +3,7 @@ import tf2onnx
 from keras import models, Input, layers
 import tensorflow as tf
 from nn_meter import load_latency_predictor
+import os
 
 # Define hardware and inference frameworks supported by nn-Meter
 hardware_inference_frameworks = [
@@ -88,6 +89,13 @@ def mapModelToFileExt():
     pass
 
 
+def clear():
+    """
+    Function that helps keep the CLI clean
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def main():
     """
     Handles all user input and ouput. Allows the user to predict the
@@ -146,6 +154,7 @@ def main():
                 else:
                     break  # valid input = exit the loop
             except:
+                clear()
                 print("Error: Invalid option.\n")
                 continue
 
@@ -168,6 +177,7 @@ def main():
                     print(user_input)
                     Loop = False
                 elif user_input == '1':  # Letting user know the general plan
+                    clear()
                     print(r"""
 .-------------------------------------------------------------------------------------------------------------------------------------.
 |   _   _ _   _                          _                          _      _             _             _                 _     _      |

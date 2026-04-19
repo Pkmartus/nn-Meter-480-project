@@ -369,13 +369,6 @@ def main():
                     clear()
 
                 elif user_input == '3':
-                    # getting user to install right version of python. setting up
-                    print("Getting Python and other tools up to date")
-                    # venv and such
-                elif user_input == '4':
-                    # getting the files downloaded for NN-meter
-                    print("Getting other dependecies set up")
-                elif user_input == '5':
                     clear()
                     stream = open(
                         './z839_workspace/configs/backend_config.yaml', 'r'

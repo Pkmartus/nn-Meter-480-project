@@ -124,10 +124,6 @@ def main():
     # Define CNN model architecture
     model = createModel()
 
-    """
-    TODO: Change functionality to allow users to enter their own custom
-    model filename for use instead of current hardcoded method.
-    """
     model_name = 'custom_model'
 
     """
@@ -155,6 +151,8 @@ def main():
                 "select a device inference framework to perform "
                 "latency prediction on.\n"
                 "Or, if you would like to create your own NN-meter inference framework, please enter \"new\".\n\n"
+                "Press q to quit\n\n"
+
                 "Option: "
             )
             # exit case if we wanna leave early
@@ -213,7 +211,7 @@ def main():
 '-------------------------------------------------------------------------------------------------------------------------------------'
 """)
                     print("="*75)
-                    print("🛠️  NN-METER CUSTOM BUILDER: COMPREHENSIVE ROADMAP  🛠️")
+                    print("  NN-METER CUSTOM BUILDER: COMPREHENSIVE ROADMAP  ")
                     print("="*75 + "\n")
 
                     # Step 1
@@ -463,7 +461,7 @@ def main():
                 if (user_input != "y" and user_input != "n"):
                     raise ValueError
                 elif (user_input == "y"):
-                    continue
+                    break
                 elif (user_input == "n"):
                     exit()  # exit the program
             except ValueError:

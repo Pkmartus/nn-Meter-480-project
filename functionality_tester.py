@@ -113,6 +113,244 @@ def pause():
     input(f"Press Enter to continue...")
     print()
 
+def Overview():
+    clear()
+    print(r"""
+.-------------------------------------------------------------------------------------------------------------------------------------.
+|   _   _ _   _                          _                          _      _             _             _                 _     _      |
+|  | \ | | \ | |          _ __ ___   ___| |_ ___ _ __    __ _ _   _(_) ___| | __     ___| |_ __ _ _ __| |_    __ _ _   _(_) __| | ___ |
+|  |  \| |  \| |  _____  | '_ ` _ \ / _ | __/ _ | '__|  / _` | | | | |/ __| |/ _____/ __| __/ _` | '__| __|  / _` | | | | |/ _` |/ _ \|
+|  | |\  | |\  | |_____| | | | | | |  __| ||  __| |    | (_| | |_| | | (__|   |_____\__ | || (_| | |  | |_  | (_| | |_| | | (_| |  __/|
+|  |_| \_|_| \_|         |_| |_| |_|\___|\__\___|_|     \__, |\__,_|_|\___|_|\_\    |___/\__\__,_|_|   \__|  \__, |\__,_|_|\__,_|\___||
+|                                                          |_|                                               |___/                    |
+'-------------------------------------------------------------------------------------------------------------------------------------'
+    """)
+    print("="*75)
+    print("  NN-METER CUSTOM BUILDER: COMPREHENSIVE ROADMAP  ")
+    print("="*75 + "\n")
+
+    # Step 1
+    print("STEP 1: ENVIRONMENT & TOOLCHAIN PREPARATION")
+    print("  - Objective: Get your development ecosystem together.")
+    print(
+        "  - Requires: Android Studio/SDK, Python virtual environment (v3.8+), ")
+    print("    and specific hardware drivers/compilers.")
+    print("  - Duration: ~1 hour\n")
+    pause()
+
+    # Step 2
+    print("STEP 2: HARDWARE ARCHITECTURE SPECIFICATION")
+    print("  - Objective: Formalize your device's capabilities.")
+    print(
+        "  - Requires: JSON descriptor files defining compute units, ")
+    print("    memory hierarchy, and clock speeds.")
+    print("  - Duration: ~1 hour\n")
+    pause()
+
+    # Step 3
+    print("STEP 3: IR PARSING & OP MAPPING")
+    print("  - Objective: Bridge your model to hardware instructions.")
+    print(
+        "  - Requires: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
+    print("    to your target’s specific operational primitives.")
+    print("  - Duration: ~2-3 hours\n")
+    pause()
+
+    # Step 4
+    print("STEP 4: LATENCY PREDICTOR DEVELOPMENT")
+    print("  - Objective: Train your estimation engine.")
+    print(
+        "  - Requires: Performance data collection from your actual hardware ")
+    print("    to regress latency for target operators.")
+    print("  - Duration: ~2-4 hours\n")
+    pause()
+
+    # Step 5
+    print("STEP 5: INTEGRATION & VALIDATION")
+    print("  - Objective: Stitch and verify the workflow.")
+    print(
+        "  - Requires: Registering your builder in the NN-Meter framework and ")
+    print("    running smoke tests against a standard model suite.")
+    print("  - Duration: ~1-2 hours\n")
+
+    print("-" * 75)
+    print("⚡ TOTAL ESTIMATED EFFORT: 7 to 11 hours")
+    print("-" * 75 + "\n")
+    pause()
+
+    print("="*80)
+    print(" NN-METER: CUSTOM BUILDER ARCHITECTURE & FILE FORMATS ")
+    print("="*80 + "\n")
+
+    print("--- DIRECTORY STRUCTURE ---")
+    print(
+        "When you finalize your custom predictor, it should be organized as follows:")
+    print("  /customized_predictor/")
+    print(
+        "  ├── meta.yaml              # Configuration/metadata for registration")
+    print(
+        "  ├── fusion_rules.json      # Mapping of supported operator fusions")
+    print(
+        "  └── [kernel_name].pkl      # Latency predictor models (Pickle files) for each kernel\n")
+    pause()
+
+    print("--- KEY FILE FORMATS EXPLAINED ---")
+    print("1. meta.yaml")
+    print("   - Type: YAML")
+    print(
+        "   - Purpose: Acts as the manifest. It defines the 'name' for your predictor,")
+    print(
+        "     the 'category' (e.g., cpu, gpu, npu), and links to the predictor folder.")
+    print("\n2. fusion_rules.json")
+    print("   - Type: JSON")
+    print(
+        "   - Purpose: Contains the detected fusion rules that inform NN-Meter how to")
+    print(
+        "     group operators into kernels for your specific hardware architecture.")
+    print("\n3. [kernel_name].pkl")
+    print("   - Type: Python Pickle")
+    print(
+        "   - Purpose: Serialized machine learning models (typically trained regressors)")
+    print(
+        "     that output predicted latency given specific kernel input parameters.")
+    print("\n" + "="*80)
+    print(
+        "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in",
+        "your fusion rules to avoid runtime mapping errors.\n"
+    )
+    pause()
+    clear()
+    print()
+
+def Environment_Setup():
+    clear()
+    print("\n" + "="*75)
+    print("NN-METER BUILDER ENVIRONMENT SETUP")
+    print("="*75 + "\n")
+    print("Open a new terminal and follow the steps below.\n")
+    pause()
+    clear()
+
+    # Step 1
+    print("STEP 1: CREATE BUILDER WORKSPACE")
+    print(
+        "  - Command: nn-meter create --tflite-workspace <path/to/place/workspace/>\n"
+    )
+    pause()
+
+    # Step 2
+    print("STEP 2: INSTALL PYTHON VERSION 3.9")
+    print("  - Source: https://www.python.org/downloads/\n")
+    pause()
+
+    # Step 3
+    print("STEP 3: CREATE VIRTUAL ENVIRONMENT")
+    print("  - Linux Command:")
+    print("    python3.9 -m venv <env_name>\n")
+    print("  - Windows Command:")
+    print("    py -3.9 -m venv <env_name>\n")
+    pause()
+
+    # Step 4
+    print("STEP 4: ACTIVATE VIRTUAL ENVIRONMENT")
+    print("  - Linux Command:")
+    print("    source <env_name>/bin/activate\n")
+    print("  - Windows Command:")
+    print("    <env_name>\\Scripts\\activate\n")
+    pause()
+
+    # Step 5
+    print("STEP 5: INSTALL REQUIRED PACKAGES")
+    print("  - Commands:")
+    print("    pip install -r tool/docs/requirements/requirements.txt")
+    print(
+        "    pip install -r tool/docs/requirements/requirements_builder.txt\n")
+    pause()
+
+    # Step 6
+    print("STEP 6: INSTALL ANDROID STUDIO")
+    print("  - Source: https://developer.android.com/studio\n")
+    pause()
+
+    # Step 7
+    print("STEP 7: DOWNLOAD BENCHMARK MODEL VERSION 2.1")
+    print(
+        "  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data\n")
+    pause()
+    clear()
+
+
+def Custom_Device_Setup():
+    clear()
+    print()
+    print("="*75)
+    print("CUSTOM DEVICE SETUP")
+    print("="*75 + "\n")
+
+    print("STEP 1: GET DEVICE SERIAL CODE")
+    print("  - Android Studio/Terminal Command:")
+    print("    adb devices")
+    print("\n  - Command output:"
+            "\n    List of devices attached",
+            "\n    [serial_number][state]\n"
+            )
+    pause()
+
+    print("STEP 2: SET DEVICE SERIAL CODE")
+    stream = open(
+        './z839_workspace/configs/backend_config.yaml', 'r'
+    )
+    config = yaml.load(stream, Loader=Loader)
+
+    device_serial = input(
+        "Enter the serial of the target device to build a latency predictor on here: "
+    )
+    print()
+    # Set the device serial to what the user entered
+    config['DEVICE_SERIAL'] = device_serial
+
+    # Update the config yaml with the device serial
+    stream = open(
+        './z839_workspace/configs/backend_config.yaml', 'w'
+    )
+    yaml.dump(config, stream)
+    print(f"Device serial set as '{device_serial}'.\n")
+
+    print("STEP 3: PUSH BENCHMARK MODEL TO DEVICE")
+    print("  - Android Studio/Terminal Command:")
+    print(
+        "    adb -s <SERIAL> push bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model /data/local/tmp\n"
+    )
+    pause()
+
+    print("STEP 4: ADD EXECUTABLE PERMISSION TO BENCHMARK MODEL")
+    print("  - Android Studio/Terminal Command:")
+    print("    adb shell chmod + x / data/local/tmp/benchmark_model\n")
+    pause()
+
+    print("STEP 5: TEST CONNECTION")
+    print("  - Android Studio/Terminal Command:")
+    print(
+        "    nn-meter connect --backend --workspace <path/to/workspace>\n"
+    )
+    print("Device setup complete!\n")
+    pause()
+    clear()
+
+
+def Build_Custom_Predictor():
+        clear()
+        print()
+        print("="*75)
+        print("Build Custom Predictor")
+        print("="*75 + "\n")
+        pause()
+        clear()
+        # detect_fusion_rules
+        # build_latency_predictors
+
+
+
 
 def main():
     """
@@ -199,237 +437,17 @@ def main():
                     clear()
                     print("\nError: Invalid option.\n")
                 elif user_input == '1':  # Letting user know the general plan
-                    clear()
-                    print(r"""
-.-------------------------------------------------------------------------------------------------------------------------------------.
-|   _   _ _   _                          _                          _      _             _             _                 _     _      |
-|  | \ | | \ | |          _ __ ___   ___| |_ ___ _ __    __ _ _   _(_) ___| | __     ___| |_ __ _ _ __| |_    __ _ _   _(_) __| | ___ |
-|  |  \| |  \| |  _____  | '_ ` _ \ / _ | __/ _ | '__|  / _` | | | | |/ __| |/ _____/ __| __/ _` | '__| __|  / _` | | | | |/ _` |/ _ \|
-|  | |\  | |\  | |_____| | | | | | |  __| ||  __| |    | (_| | |_| | | (__|   |_____\__ | || (_| | |  | |_  | (_| | |_| | | (_| |  __/|
-|  |_| \_|_| \_|         |_| |_| |_|\___|\__\___|_|     \__, |\__,_|_|\___|_|\_\    |___/\__\__,_|_|   \__|  \__, |\__,_|_|\__,_|\___||
-|                                                          |_|                                               |___/                    |
-'-------------------------------------------------------------------------------------------------------------------------------------'
-""")
-                    print("="*75)
-                    print("  NN-METER CUSTOM BUILDER: COMPREHENSIVE ROADMAP  ")
-                    print("="*75 + "\n")
-
-                    # Step 1
-                    print("STEP 1: ENVIRONMENT & TOOLCHAIN PREPARATION")
-                    print("  - Objective: Get your development ecosystem together.")
-                    print(
-                        "  - Requires: Android Studio/SDK, Python virtual environment (v3.8+), ")
-                    print("    and specific hardware drivers/compilers.")
-                    print("  - Duration: ~1 hour\n")
-                    pause()
-
-                    # Step 2
-                    print("STEP 2: HARDWARE ARCHITECTURE SPECIFICATION")
-                    print("  - Objective: Formalize your device's capabilities.")
-                    print(
-                        "  - Requires: JSON descriptor files defining compute units, ")
-                    print("    memory hierarchy, and clock speeds.")
-                    print("  - Duration: ~1 hour\n")
-                    pause()
-
-                    # Step 3
-                    print("STEP 3: IR PARSING & OP MAPPING")
-                    print("  - Objective: Bridge your model to hardware instructions.")
-                    print(
-                        "  - Requires: Custom parser scripts to map framework IRs (e.g., ONNX/TFLite) ")
-                    print("    to your target’s specific operational primitives.")
-                    print("  - Duration: ~2-3 hours\n")
-                    pause()
-
-                    # Step 4
-                    print("STEP 4: LATENCY PREDICTOR DEVELOPMENT")
-                    print("  - Objective: Train your estimation engine.")
-                    print(
-                        "  - Requires: Performance data collection from your actual hardware ")
-                    print("    to regress latency for target operators.")
-                    print("  - Duration: ~2-4 hours\n")
-                    pause()
-
-                    # Step 5
-                    print("STEP 5: INTEGRATION & VALIDATION")
-                    print("  - Objective: Stitch and verify the workflow.")
-                    print(
-                        "  - Requires: Registering your builder in the NN-Meter framework and ")
-                    print("    running smoke tests against a standard model suite.")
-                    print("  - Duration: ~1-2 hours\n")
-
-                    print("-" * 75)
-                    print("⚡ TOTAL ESTIMATED EFFORT: 7 to 11 hours")
-                    print("-" * 75 + "\n")
-                    pause()
-
-                    print("="*80)
-                    print(" NN-METER: CUSTOM BUILDER ARCHITECTURE & FILE FORMATS ")
-                    print("="*80 + "\n")
-
-                    print("--- DIRECTORY STRUCTURE ---")
-                    print(
-                        "When you finalize your custom predictor, it should be organized as follows:")
-                    print("  /customized_predictor/")
-                    print(
-                        "  ├── meta.yaml              # Configuration/metadata for registration")
-                    print(
-                        "  ├── fusion_rules.json      # Mapping of supported operator fusions")
-                    print(
-                        "  └── [kernel_name].pkl      # Latency predictor models (Pickle files) for each kernel\n")
-                    pause()
-
-                    print("--- KEY FILE FORMATS EXPLAINED ---")
-                    print("1. meta.yaml")
-                    print("   - Type: YAML")
-                    print(
-                        "   - Purpose: Acts as the manifest. It defines the 'name' for your predictor,")
-                    print(
-                        "     the 'category' (e.g., cpu, gpu, npu), and links to the predictor folder.")
-                    print("\n2. fusion_rules.json")
-                    print("   - Type: JSON")
-                    print(
-                        "   - Purpose: Contains the detected fusion rules that inform NN-Meter how to")
-                    print(
-                        "     group operators into kernels for your specific hardware architecture.")
-                    print("\n3. [kernel_name].pkl")
-                    print("   - Type: Python Pickle")
-                    print(
-                        "   - Purpose: Serialized machine learning models (typically trained regressors)")
-                    print(
-                        "     that output predicted latency given specific kernel input parameters.")
-                    print("\n" + "="*80)
-                    print(
-                        "Pro-tip: Keep your [kernel_name].pkl files named exactly as they appear in",
-                        "your fusion rules to avoid runtime mapping errors.\n"
-                    )
-                    pause()
-                    clear()
-                    print()
-
+                    Overview()
                 # Setup environment (python install, venv, and dependencies)
                 elif user_input == '2':
-                    clear()
-                    print("\n" + "="*75)
-                    print("NN-METER BUILDER ENVIRONMENT SETUP")
-                    print("="*75 + "\n")
-                    print("Open a new terminal and follow the steps below.\n")
-                    pause()
-                    clear()
+                   Environment_Setup()
 
-                    # Step 1
-                    print("STEP 1: CREATE BUILDER WORKSPACE")
-                    print(
-                        "  - Command: nn-meter create --tflite-workspace <path/to/place/workspace/>\n"
-                    )
-                    pause()
-
-                    # Step 2
-                    print("STEP 2: INSTALL PYTHON VERSION 3.9")
-                    print("  - Source: https://www.python.org/downloads/\n")
-                    pause()
-
-                    # Step 3
-                    print("STEP 3: CREATE VIRTUAL ENVIRONMENT")
-                    print("  - Linux Command:")
-                    print("    python3.9 -m venv <env_name>\n")
-                    print("  - Windows Command:")
-                    print("    py -3.9 -m venv <env_name>\n")
-                    pause()
-
-                    # Step 4
-                    print("STEP 4: ACTIVATE VIRTUAL ENVIRONMENT")
-                    print("  - Linux Command:")
-                    print("    source <env_name>/bin/activate\n")
-                    print("  - Windows Command:")
-                    print("    <env_name>\\Scripts\\activate\n")
-                    pause()
-
-                    # Step 5
-                    print("STEP 5: INSTALL REQUIRED PACKAGES")
-                    print("  - Commands:")
-                    print("    pip install -r tool/docs/requirements/requirements.txt")
-                    print(
-                        "    pip install -r tool/docs/requirements/requirements_builder.txt\n")
-                    pause()
-
-                    # Step 6
-                    print("STEP 6: INSTALL ANDROID STUDIO")
-                    print("  - Source: https://developer.android.com/studio\n")
-                    pause()
-
-                    # Step 7
-                    print("STEP 7: DOWNLOAD BENCHMARK MODEL VERSION 2.1")
-                    print(
-                        "  - Source: https://github.com/microsoft/nn-Meter/releases/tag/v2.0-data\n")
-                    pause()
-                    clear()
                 elif user_input == '3':
-                    clear()
-                    print()
-                    print("="*75)
-                    print("CUSTOM DEVICE SETUP")
-                    print("="*75 + "\n")
-
-                    print("STEP 1: GET DEVICE SERIAL CODE")
-                    print("  - Android Studio/Terminal Command:")
-                    print("    adb devices")
-                    print("\n  - Command output:"
-                          "\n    List of devices attached",
-                          "\n    [serial_number][state]\n"
-                          )
-                    pause()
-
-                    print("STEP 2: SET DEVICE SERIAL CODE")
-                    stream = open(
-                        './z839_workspace/configs/backend_config.yaml', 'r'
-                    )
-                    config = yaml.load(stream, Loader=Loader)
-
-                    device_serial = input(
-                        "Enter the serial of the target device to build a latency predictor on here: "
-                    )
-                    print()
-                    # Set the device serial to what the user entered
-                    config['DEVICE_SERIAL'] = device_serial
-
-                    # Update the config yaml with the device serial
-                    stream = open(
-                        './z839_workspace/configs/backend_config.yaml', 'w'
-                    )
-                    yaml.dump(config, stream)
-                    print(f"Device serial set as '{device_serial}'.\n")
-
-                    print("STEP 3: PUSH BENCHMARK MODEL TO DEVICE")
-                    print("  - Android Studio/Terminal Command:")
-                    print(
-                        "    adb -s <SERIAL> push bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model /data/local/tmp\n"
-                    )
-                    pause()
-
-                    print("STEP 4: ADD EXECUTABLE PERMISSION TO BENCHMARK MODEL")
-                    print("  - Android Studio/Terminal Command:")
-                    print("    adb shell chmod + x / data/local/tmp/benchmark_model\n")
-                    pause()
-
-                    print("STEP 5: TEST CONNECTION")
-                    print("  - Android Studio/Terminal Command:")
-                    print(
-                        "    nn-meter connect --backend --workspace <path/to/workspace>\n"
-                    )
-                    print("Device setup complete!\n")
-                    pause()
-                    clear()
+                    Custom_Device_Setup()
+                    
                 elif user_input == '4':
-                    clear()
-                    print()
-                    print("="*75)
-                    print("Build Custom Predictor")
-                    print("="*75 + "\n")
-                    pause()
-                    clear()
-                    # detect_fusion_rules
-                    # build_latency_predictors
+                     Build_Custom_Predictor()
+                
                 else:
                     print("\nError: Invalid option.\n")
 

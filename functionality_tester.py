@@ -174,7 +174,7 @@ def Overview():
     print("  - Duration: ~1-2 hours\n")
 
     print("-" * 75)
-    print("⚡ TOTAL ESTIMATED EFFORT: 7 to 11 hours")
+    print("TOTAL ESTIMATED EFFORT: 7 to 11 hours")
     print("-" * 75 + "\n")
     pause()
 
@@ -346,8 +346,8 @@ def Build_Custom_Predictor():
         print("="*75 + "\n")
         pause()
         clear()
-        # detect_fusion_rules
-        # build_latency_predictors
+        detect_fusion_rules
+        build_latency_predictors
 
 
 

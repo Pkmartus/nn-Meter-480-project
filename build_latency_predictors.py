@@ -1,5 +1,10 @@
+#This file Loops through the common kernel types and runs the latency detection for each.
+#Unlike the builtin Nn-meter function build_predictors() this one can be modified to include more or less types.
+#This version will also detect if predictors have already been built for a specific type and skip that type.
+#Doing this allows the process to be quickly resumed if one of the types fails or the connection is interupted.
+#If an exception is thrown by one kernel prediction type this will attempt to move on to the next type rather than crashing.
+
 import os
-import monkeypatch # type: ignore
 from nn_meter.builder import builder_config
 from nn_meter.builder.backends import connect_backend
 from nn_meter.builder.nn_meter_builder import build_predictor_for_kernel

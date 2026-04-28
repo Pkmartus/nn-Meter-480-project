@@ -1,9 +1,11 @@
+#This file is a simple implementation of detecting fusion rules for use in our CLI
+#Uses our monkeypatch file to fix the usb issues we experianced with ADB
+
 from nn_meter.builder import builder_config
 from nn_meter.builder.backends import connect_backend
 from nn_meter.builder import profile_models
 from nn_meter.builder.backend_meta.fusion_rule_tester import generate_testcases
 from nn_meter.builder.backend_meta.fusion_rule_tester import detect_fusion_rule
-import monkeypatch  # type: ignore # pylint: disable=unused-import
 
 
 # initialize builder

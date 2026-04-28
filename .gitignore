@@ -50,5 +50,5 @@ custom_model.onnx
 z839
 z839_predictor/
 z839_workspace/fusion_rule_test/
-z839_workspace/predictor_build/z839_predictor/
+z839_workspace/predictor_build/
 z839_workspace/configs/backend_config.yaml

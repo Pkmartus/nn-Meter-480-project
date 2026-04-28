@@ -5,8 +5,8 @@ import tensorflow as tf
 from nn_meter import load_latency_predictor
 import os
 import yaml
-# import detect_fusion_rules
-# import build_latency_predictors
+#import detect_fusion_rules
+#import build_latency_predictors
 from yaml import load, dump
 # pyyaml documentationnnnn: https://pyyaml.org/wiki/PyYAMLDocumentation
 try:

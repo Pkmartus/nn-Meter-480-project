@@ -1,3 +1,4 @@
+# this file enabled me to test the build quickly on a single kernel to verify that latency detection and predictor building did work.
 # initialize builder config with workspace
 from nn_meter.builder import build_predictor_for_kernel
 import monkeypatch  # type: ignore

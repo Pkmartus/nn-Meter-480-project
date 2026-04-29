@@ -10,5 +10,5 @@ Prerequisites:
 
 How to run the CLI
 - First, run the file functionality_tester.py
-- then when prompted, enter the word "new."
+- then when prompted, enter the word "new"
 - then you can follow the menu on what options you want to select  

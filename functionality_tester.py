@@ -156,13 +156,13 @@ def Overview():
     print("  - Duration: ~2-3 hours\n")
     pause()
 
-    # Step 4
+    # Step 4rs\
     print("STEP 4: LATENCY PREDICTOR DEVELOPMENT")
     print("  - Objective: Train your estimation engine.")
     print(
         "  - Requires: Performance data collection from your actual hardware ")
     print("    to regress latency for target operators.")
-    print("  - Duration: ~2-4 hours\n")
+    print("  - Duration: ~2-4 days")
     pause()
 
     # Step 5
@@ -174,7 +174,7 @@ def Overview():
     print("  - Duration: ~1-2 hours\n")
 
     print("-" * 75)
-    print("TOTAL ESTIMATED EFFORT: 7 to 11 hours")
+    print("TOTAL ESTIMATED EFFORT: 4-5 days hours")
     print("-" * 75 + "\n")
     pause()
 
